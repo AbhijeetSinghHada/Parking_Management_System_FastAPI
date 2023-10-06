@@ -1,0 +1,20 @@
+{
+    "menu": {
+        "ADMIN_VIEW": "\nPark+ Admin Menu!! Choose from the options below -\n1) Check Parking Capacity\n2) Add Vehicle Category\n3) Update Parking Space\n4) Update Parking Charges\n5) Ban Slot\n6) Unban Slot\n7) View Ban Slots\n8) Quit\n",
+        "OPERATOR_VIEW": "\nPark+ Operator Menu!! Choose from the options below -\n1) Check Parking Capacity\n2) Add Vehicle\n3) Assign Slot\n4) Un-Assign Slot\n5) Quit",
+        "ADMIN_MENU_VIEW": "\nWelcome to Park+!! Choose from the options below -\n\n1) Admin View\n2) Operator \n3) Quit\n",
+        "LOGIN_VIEW": "Hello Welcome to Park+!! Choose from the options below -\n1) Login\n2) Exit"
+    },
+    "prompts": {
+        "BILL_FORMAT": "Bill ID : {}\nCustomer ID : {}\nCustomer Name : {}\nEmail Address : {}\nPhone Number : {}\nVehicle Number : {}\nVehicle Type : {}\nTimestamp Parked In : {}\nTimestamp Parked Out : {}\nTotal Charges : {}",
+        "INVALID_DETAILS": "Invalid Login Details",
+        "BILL_NOT_EXISTS": "Bill ID do not Exists.",
+        "INPUT_CUSTOMER_ID": "Enter Customer ID (Leave if not known): ",
+        "INPUT_CUSTOMER_NAME": "Enter Customer Name : ",
+        "INPUT_EMAIL": "Enter Email Address : ",
+        "INPUT_PHONE": "Enter Phone Number : ",
+        "INPUT_VEHICLE_NUMBER": "Enter Vehicle Number : ",
+        "INPUT_INDEX_SLOT_CATEGORY": "Enter the Index of Slot Category to Add Parking Space : ",
+        "INPUT_NEW_CAPACITY": "Enter New Capacity : "
+    }
+}
