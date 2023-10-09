@@ -1,6 +1,5 @@
 from src.helpers import helpers
 import logging
-
 logger = logging.getLogger(__name__)
 
 
@@ -17,6 +16,7 @@ class Vehicle:
             "check_if_vehicle_exists called with params {}".format(vehicle_number))
         data = self.db_helpers.get_vehicle_data(vehicle_number=vehicle_number)
         if data:
+            logger.debug("check_if_vehicle_exists returned {}".format(data))
             return data
         return None
 

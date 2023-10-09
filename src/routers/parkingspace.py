@@ -14,8 +14,8 @@ router = APIRouter()
 
 
 @router.get("/parkingspace")
-@operator_only
 @handle_errors
+@operator_only
 def get_parking_space(request: Request):
 
     parking_spaces = program_driver.check_parking_capacity()
@@ -23,9 +23,9 @@ def get_parking_space(request: Request):
 
 
 @router.put("/parkingspace")
-@admin_only
 @validate_body(parking_space_schema)
 @handle_errors
+@admin_only
 def update_parking_space(request: Request, request_data=Body()):
 
     if request_data.get("total_capacity"):
@@ -42,9 +42,9 @@ def update_parking_space(request: Request, request_data=Body()):
 
 
 @router.post("/parkingspace")
-@admin_only
 @validate_body(post_parking_space_schema)
 @handle_errors
+@admin_only
 def add_new_parking(request: Request, request_data=Body()):
 
     if request_data.get("total_capacity") and request_data.get("charge"):

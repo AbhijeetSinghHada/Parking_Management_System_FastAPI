@@ -16,7 +16,7 @@ class DatabaseHelper:
         logger.debug("get_slots_data called")
         try:
             self.slots_data = self.db.get_multiple_items(
-                    self.sql_queries.get("slot_data"))
+                self.sql_queries.get("slot_data"))
             return self.slots_data
         except Exception as exc:
             raise ResourceWarning("Cannot Fetch Slot Data.") from exc
@@ -25,7 +25,7 @@ class DatabaseHelper:
         logger.debug(f"get_parking_capacity called with params {vehicle_type}")
         try:
             self.vehicle_category_data = self.db.get_multiple_items(
-                    self.sql_queries.get("vehicle_category_data"))
+                self.sql_queries.get("vehicle_category_data"))
             for i in self.vehicle_category_data:
                 if i[0] == vehicle_type:
                     return i[1]
@@ -37,11 +37,12 @@ class DatabaseHelper:
 
         try:
             self.vehicle_category_data = self.db.get_multiple_items(
-                    self.sql_queries.get("vehicle_category_data"))
+                self.sql_queries.get("vehicle_category_data"))
             return self.vehicle_category_data
         except Exception as exc:
             raise ResourceWarning(
                 "Cannot Fetch Vehicle Category Data.") from exc
+
     def update_charges(self, charges, vehicle_type):
         logger.debug(
             f"update_charges called with params {charges},{vehicle_type}")
@@ -173,7 +174,6 @@ class DatabaseHelper:
             self.db.update_item(
                 self.sql_queries.get("insert_vehicle_by_customer_id"),
                 (customer_id, vehicle_number, selected_vehicle_type))
-            print("Vehicle Added Successfully, Customer Already Exists.")
         except Exception as exc:
             raise ResourceWarning("Cannot Add Vehicle.") from exc
 

@@ -1,0 +1,309 @@
+2023-10-08 15:53:50,294 DEBUG get_slots_data called
+2023-10-08 15:53:50,295 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 10, 'RJ20CD7259', 10, 20)] 
+2023-10-08 15:53:50,296 DEBUG generate_bill called with params 10
+2023-10-08 15:53:50,296 DEBUG parked_time_elapsed_in_hours called with params 10
+2023-10-08 15:53:50,298 DEBUG get_multiple_item called with params ((10,),) returned item : [(datetime.date(2023, 10, 8), datetime.timedelta(seconds=48120))] 
+2023-10-08 15:53:50,298 DEBUG calculate_charges called with params 10,2
+2023-10-08 15:53:50,298 DEBUG update_billing_table called with params 2023-10-08 15:53,20,10
+2023-10-08 15:53:50,302 DEBUG update_item called with params (('2023-10-08 15:53', 20, 10),) returned item : 0, 
+2023-10-08 15:53:50,302 DEBUG generate_bill called with params 10
+2023-10-08 15:53:50,302 DEBUG get_billing_details called with params 10
+2023-10-08 15:53:50,303 DEBUG get_multiple_item called with params ((10,),) returned item : [(10, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV', datetime.date(2023, 10, 8), datetime.timedelta(seconds=48120), datetime.datetime(2023, 10, 8, 15, 53), 20)] 
+2023-10-08 15:53:50,304 DEBUG unassign_slot called with params 20
+2023-10-08 15:53:50,304 DEBUG remove_parked_slot called with params 20
+2023-10-08 15:53:50,307 DEBUG update_item called with params ((20,),) returned item : 0, 
+2023-10-08 16:12:19,206 DEBUG get_vehicle_category_data called
+2023-10-08 16:12:19,208 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-08 16:55:53,848 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-10-08 16:55:53,848 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-10-08 16:55:53,848 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-10-08 16:55:59,162 DEBUG view_ban_slots called
+2023-10-08 16:55:59,162 DEBUG get_slots_data called
+2023-10-08 16:55:59,162 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19)] 
+2023-10-08 17:10:46,791 DEBUG check_if_vehicle_exists called with params RJ20BS7788
+2023-10-08 17:10:46,791 DEBUG get_vehicle_data called with params RJ20BS7788,,
+2023-10-08 17:10:46,791 DEBUG get_multiple_item called with params (('RJ20BS7788', '', ''),) returned item : [(13, 'Udbhav', 'udbhav@gmail.com', '6577754536', 'RJ20BS7788', 'HMV')] 
+2023-10-08 17:10:46,791 DEBUG check_if_vehicle_exists returned [(13, 'Udbhav', 'udbhav@gmail.com', '6577754536', 'RJ20BS7788', 'HMV')]
+2023-10-09 09:33:42,192 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-10-09 09:33:42,200 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-10-09 09:33:42,200 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-10-09 09:34:58,384 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 17, in wrapper
+    access_token = validate_access_token(request)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\jwt_helpers.py", line 17, in validate_access_token
+    raise HTTPException(401, "Unauthorized")
+fastapi.exceptions.HTTPException: (401, 'Unauthorized')
+
+2023-10-09 09:34:58,392 ERROR Error Occurred: assign_slot Method Error: (401, 'Unauthorized')
+2023-10-09 09:37:48,473 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 18, in wrapper
+    role = access_token.get("role")
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'JSONResponse' object has no attribute 'get'
+
+2023-10-09 09:37:48,473 ERROR Error Occurred: assign_slot Method Error: 'JSONResponse' object has no attribute 'get'
+2023-10-09 09:38:05,171 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 18, in wrapper
+    role = access_token.get("role")
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'JSONResponse' object has no attribute 'get'
+
+2023-10-09 09:38:05,171 ERROR Error Occurred: assign_slot Method Error: 'JSONResponse' object has no attribute 'get'
+2023-10-09 09:39:59,629 DEBUG get_vehicle_category_data called
+2023-10-09 09:39:59,629 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:39:59,629 DEBUG get_vehicle_category_data called
+2023-10-09 09:39:59,644 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:39:59,644 DEBUG check_if_slot_already_occupied called with params 6, LMV
+2023-10-09 09:39:59,644 DEBUG get_slots_data called
+2023-10-09 09:39:59,644 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19)] 
+2023-10-09 09:39:59,644 DEBUG get_slots_data called
+2023-10-09 09:39:59,644 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19)] 
+2023-10-09 09:39:59,644 DEBUG check_if_vehicle_exists called with params RJ20CD7259
+2023-10-09 09:39:59,644 DEBUG get_vehicle_data called with params RJ20CD7259,,
+2023-10-09 09:39:59,644 DEBUG get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-10-09 09:39:59,644 DEBUG check_if_vehicle_exists returned [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-10-09 09:39:59,658 DEBUG insert_into_billing_table called with params RJ20CD7259,2023-10-09,09:39
+2023-10-09 09:39:59,660 DEBUG update_item called with params (('RJ20CD7259', datetime.date(2023, 10, 9), '09:39'),) returned item : 11, 
+2023-10-09 09:39:59,660 DEBUG assign_slot called
+2023-10-09 09:39:59,660 DEBUG insert_into_slot_table called with params 6,RJ20CD7259,LMV
+2023-10-09 09:39:59,675 DEBUG update_item called with params ((6, 'RJ20CD7259', 'LMV'),) returned item : 21, 
+2023-10-09 09:40:33,987 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 18, in wrapper
+    role = access_token.get("role")
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'JSONResponse' object has no attribute 'get'
+
+2023-10-09 09:40:33,987 ERROR Error Occurred: assign_slot Method Error: 'JSONResponse' object has no attribute 'get'
+2023-10-09 09:44:13,070 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 48, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 18, in wrapper
+    access_token = validate_access_token(request)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\jwt_helpers.py", line 20, in validate_access_token
+    raise UnauthorizedError("Token Not Found")
+src.helpers.errors.UnauthorizedError: Token Not Found
+
+2023-10-09 09:44:13,070 ERROR Error Occurred: assign_slot Method Error: Token Not Found
+2023-10-09 09:47:12,332 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 17, in wrapper
+    access_token = validate_access_token(request)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\jwt_helpers.py", line 20, in validate_access_token
+    raise UnauthorizedError("Token Not Found")
+src.helpers.errors.UnauthorizedError: Token Not Found
+
+2023-10-09 09:47:12,332 ERROR Error Occurred: assign_slot Method Error: Token Not Found
+2023-10-09 09:47:57,338 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-10-09 09:47:57,338 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-10-09 09:47:57,338 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-10-09 09:48:04,944 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:04,944 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:04,944 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:04,944 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:04,944 DEBUG check_if_slot_already_occupied called with params 6, LMV
+2023-10-09 09:48:04,944 DEBUG get_slots_data called
+2023-10-09 09:48:04,948 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:48:04,976 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 21, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 31, in assign_slot
+    slot.check_if_slot_already_occupied(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\slot.py", line 44, in check_if_slot_already_occupied
+    raise LookupError(
+LookupError: Slot Already Occupied! Choose One Which is not.
+
+2023-10-09 09:48:04,976 ERROR Error Occurred: assign_slot Method Error: Slot Already Occupied! Choose One Which is not.
+2023-10-09 09:48:13,012 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:13,012 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:13,012 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:13,012 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:13,012 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-10-09 09:48:13,012 DEBUG get_slots_data called
+2023-10-09 09:48:13,012 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:48:13,020 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 21, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 31, in assign_slot
+    slot.check_if_slot_already_occupied(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\slot.py", line 44, in check_if_slot_already_occupied
+    raise LookupError(
+LookupError: Slot Already Occupied! Choose One Which is not.
+
+2023-10-09 09:48:13,020 ERROR Error Occurred: assign_slot Method Error: Slot Already Occupied! Choose One Which is not.
+2023-10-09 09:48:18,571 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:18,571 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:18,571 DEBUG get_vehicle_category_data called
+2023-10-09 09:48:18,571 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:48:18,571 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:48:18,571 DEBUG get_slots_data called
+2023-10-09 09:48:18,571 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:48:18,571 DEBUG get_slots_data called
+2023-10-09 09:48:18,571 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:48:18,579 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 47, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 21, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 36, in assign_slot
+    raise ConflictError("Vehicle has a Slot Already Assigend.")
+src.helpers.errors.ConflictError: Vehicle has a Slot Already Assigend.
+
+2023-10-09 09:48:18,579 ERROR Error Occurred: assign_slot Method Error: Vehicle has a Slot Already Assigend.
+2023-10-09 09:49:06,222 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:06,222 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:06,222 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:06,222 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:06,222 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:49:06,222 DEBUG get_slots_data called
+2023-10-09 09:49:06,222 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:06,222 DEBUG get_slots_data called
+2023-10-09 09:49:06,222 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:06,238 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 48, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 22, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 36, in assign_slot
+    raise ConflictError("Vehicle has a Slot Already Assigend.")
+src.helpers.errors.ConflictError: Vehicle has a Slot Already Assigend.
+
+2023-10-09 09:49:06,238 ERROR Error Occurred: assign_slot Method Error: Vehicle has a Slot Already Assigend.
+2023-10-09 09:49:16,234 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:16,234 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:16,234 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:16,234 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:16,234 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:49:16,234 DEBUG get_slots_data called
+2023-10-09 09:49:16,234 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:16,234 DEBUG get_slots_data called
+2023-10-09 09:49:16,242 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:16,266 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 48, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 22, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 36, in assign_slot
+    raise ConflictError("Vehicle has a Slot Already Assigend.")
+src.helpers.errors.ConflictError: Vehicle has a Slot Already Assigend.
+
+2023-10-09 09:49:16,266 ERROR Error Occurred: assign_slot Method Error: Vehicle has a Slot Already Assigend.
+2023-10-09 09:49:34,335 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:34,335 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:34,335 DEBUG get_vehicle_category_data called
+2023-10-09 09:49:34,335 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:49:34,335 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:49:34,335 DEBUG get_slots_data called
+2023-10-09 09:49:34,335 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:34,335 DEBUG get_slots_data called
+2023-10-09 09:49:34,335 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:49:34,366 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 48, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 22, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 36, in assign_slot
+    raise ConflictError("Vehicle has a Slot Already Assigend.")
+src.helpers.errors.ConflictError: Vehicle has a Slot Already Assigend.
+
+2023-10-09 09:49:34,366 ERROR Error Occurred: assign_slot Method Error: Vehicle has a Slot Already Assigend.
+2023-10-09 09:51:10,879 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:10,879 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:10,879 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:10,879 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:10,879 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:51:10,879 DEBUG get_slots_data called
+2023-10-09 09:51:10,879 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:51:10,879 DEBUG get_slots_data called
+2023-10-09 09:51:10,879 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:51:19,449 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:19,449 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:19,449 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:19,449 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:19,449 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:51:19,449 DEBUG get_slots_data called
+2023-10-09 09:51:19,449 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:51:19,449 DEBUG get_slots_data called
+2023-10-09 09:51:19,449 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:51:19,464 DEBUG Error Occurred: assign_slot Method Error: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 48, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\decorators.py", line 22, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 24, in assign_slot
+    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\driver_program.py", line 36, in assign_slot
+    raise ConflictError("Vehicle has a Slot Already Assigend.")
+src.helpers.errors.ConflictError: Vehicle has a Slot Already Assigend.
+
+2023-10-09 09:51:19,464 ERROR Error Occurred: assign_slot Method Error: Vehicle has a Slot Already Assigend.
+2023-10-09 09:51:28,075 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:28,075 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:28,075 DEBUG get_vehicle_category_data called
+2023-10-09 09:51:28,075 DEBUG get_multiple_item called with params () returned item : [('LMV', 8, 10), ('HMV', 10, 50), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-09 09:51:28,075 DEBUG check_if_slot_already_occupied called with params 5, LMV
+2023-10-09 09:51:28,075 DEBUG get_slots_data called
+2023-10-09 09:51:28,082 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:51:28,082 DEBUG get_slots_data called
+2023-10-09 09:51:28,082 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:54:12,662 DEBUG get_slots_data called
+2023-10-09 09:54:12,669 DEBUG get_multiple_item called with params () returned item : [(7, -1, 'LMV', 1, -1, '0', 10, 17), (2, -1, 'LMV', 1, -1, '0', 10, 18), (4, -1, 'LMV', 1, -1, '0', 10, 19), (6, 1, 'LMV', 2, 11, 'RJ20CD7259', 10, 21)] 
+2023-10-09 09:54:12,669 DEBUG generate_bill called with params 11
+2023-10-09 09:54:12,669 DEBUG parked_time_elapsed_in_hours called with params 11
+2023-10-09 09:54:12,669 DEBUG get_multiple_item called with params ((11,),) returned item : [(datetime.date(2023, 10, 9), datetime.timedelta(seconds=34740))] 
+2023-10-09 09:54:12,669 DEBUG calculate_charges called with params 10,0
+2023-10-09 09:54:12,669 DEBUG update_billing_table called with params 2023-10-09 09:54,10,11
+2023-10-09 09:54:12,681 DEBUG update_item called with params (('2023-10-09 09:54', 10, 11),) returned item : 0, 
+2023-10-09 09:54:12,681 DEBUG generate_bill called with params 11
+2023-10-09 09:54:12,681 DEBUG get_billing_details called with params 11
+2023-10-09 09:54:12,681 DEBUG get_multiple_item called with params ((11,),) returned item : [(11, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV', datetime.date(2023, 10, 9), datetime.timedelta(seconds=34740), datetime.datetime(2023, 10, 9, 9, 54), 10)] 
+2023-10-09 09:54:12,681 DEBUG unassign_slot called with params 21
+2023-10-09 09:54:12,681 DEBUG remove_parked_slot called with params 21
+2023-10-09 09:54:12,685 DEBUG update_item called with params ((21,),) returned item : 0, 

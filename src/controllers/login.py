@@ -1,7 +1,10 @@
+import logging
 import hashlib
-from src.helpers.errors import AuthenticationError
 from src.helpers import helpers
+
 prompts = helpers.get_prompts()
+logger = logging.getLogger(__name__)
+
 
 class Login:
     def __init__(self, db, username, password):
@@ -11,7 +14,6 @@ class Login:
         self.user_data = None
         self.db = db
         self.sql_queries = helpers.get_sql_queries()
-        
 
     def fetch_user_roles(self):
         self.user_data = self.db.get_multiple_items(
@@ -26,7 +28,8 @@ class Login:
             self.user_id = data[0][0]
             return self.user_id
 
-        raise AuthenticationError(prompts.get("prompts").get("INVALID_DETAILS"))
+        raise ValueError(prompts.get(
+            "prompts").get("INVALID_DETAILS"))
 
     @staticmethod
     def get_hashed_password(password):

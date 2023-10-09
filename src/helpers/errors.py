@@ -14,3 +14,7 @@ class AuthenticationError(ValueError):
 
 class ConflictError(LookupError):
     pass
+
+
+class UnauthorizedError(PermissionError):
+    pass

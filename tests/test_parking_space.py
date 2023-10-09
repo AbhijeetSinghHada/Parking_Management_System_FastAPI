@@ -28,18 +28,18 @@ class TestParkingSpace(unittest.TestCase):
     def test_get_parking_slot_attributes(self):
         self.db_helper.get_vehicle_category_data.return_value = [
             ('LMV', 20, 100), ('HMV', 10, 200), ('Two Wheeler', 30, 50)]
-        return_val = self.parking_space.get_parking_slot_attributes('LMV')
+        return_val = self.parking_space.get_parking_category_details('LMV')
         self.assertEqual(return_val, ('LMV', 20, 100))
 
     def test_are_vehicles_already_parked_positive(self):
         self.db_helper.get_slots_data.return_value = [
             (11, 20, 'LMV'), (2, 10, 'HMV'), (3, 30, 'Two Wheeler')]
-        return_val = self.parking_space.are_vehicles_already_parked('LMV', 10)
+        return_val = self.parking_space.is_space_occupied('LMV', 10)
         self.assertEqual(return_val, True)
 
     def test_are_vehicles_already_parked_negative(self):
         self.db_helper.get_slots_data.return_value = [
             (11, 20, 'LMV'), (2, 10, 'HMV'), (3, 30, 'Two Wheeler')]
-        return_val = self.parking_space.are_vehicles_already_parked(
+        return_val = self.parking_space.is_space_occupied(
             'Wheeler', 30)
         self.assertEqual(return_val, False)

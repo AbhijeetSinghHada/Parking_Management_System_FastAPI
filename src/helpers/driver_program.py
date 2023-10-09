@@ -20,27 +20,20 @@ class ProgramDriver:
 
     def assign_slot(self, slot_number, vehicle_type, vehicle_number):
 
-        validations.validate_integer_input(slot_number)
-        validations.validate_string_input(vehicle_type)
-        validations.validate_vehicle_number(vehicle_number)
-
         slot = Slot(self.db_helper)
         parking_space = ParkingSpace(self.db_helper)
-        parking_space.check_if_vehicle_type_exists(vehicle_type)
-        parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+        parking_space.is_valid_vehicle_type(vehicle_type)
+        parking_space.is_valid_slot(slot_number, vehicle_type)
         slot.check_if_slot_already_occupied(slot_number, vehicle_type)
 
         slots_data = self.db_helper.get_slots_data()
-
         for i in slots_data:
             if i[5] == vehicle_number:
                 raise ConflictError("Vehicle has a Slot Already Assigend.")
-
         data = slot.check_if_vehicle_exists(vehicle_number)
         if not data:
             raise ValueError(
                 "Vehicle do not exist in the database. Please Add First")
-
         fetched_vehicle_type = data[0][5]
         if vehicle_type != fetched_vehicle_type:
             raise ValueError(
@@ -50,6 +43,7 @@ class ProgramDriver:
         billing = Billing(self.db_helper)
         billing.insert_into_bill_table(vehicle_number, date, time)
         slot.assign_slot(slot_number, vehicle_number, vehicle_type)
+        return True
 
     def get_slot_table_by_category(self, vehicle_type):
 
@@ -69,8 +63,7 @@ class ProgramDriver:
         parking_space = ParkingSpace(self.db_helper)
         if vehicle.check_if_vehicle_exists(vehicle_number):
             raise LookupError("Vehicle Already Exists.")
-
-        parking_space.check_if_vehicle_type_exists(vehicle_type)
+        parking_space.is_valid_vehicle_type(vehicle_type)
 
         customer_data = self.db_helper.fetch_customer_data(
             customer_id, email_address, phone_number)
@@ -78,8 +71,9 @@ class ProgramDriver:
             customer_id = customer_data[0][0]
             self.db_helper.insert_vehicle_by_customer_id(
                 customer_id, vehicle_number, vehicle_type)
-            formatted_data = {"customer": {"customer_id": customer_data[0][0], "name": customer_data[0][1], "email_address": customer_data[0][2],
-                              "phone_number": customer_data[0][3]}, "vehicle_number": vehicle_number,
+            formatted_data = {"customer": {"customer_id": customer_data[0][0], "name": customer_data[0][1],
+                                           "email_address": customer_data[0][2],
+                                           "phone_number": customer_data[0][3]}, "vehicle_number": vehicle_number,
                               "vehicle_type": vehicle_type}
             return formatted_data, "Vehicle Added Successfully. Customer Details Existed."
 
@@ -87,8 +81,8 @@ class ProgramDriver:
             name, email_address, phone_number)
         vehicle.add_vehicle(vehicle_number, vehicle_type)
         formatted_data = {"customer": {"customer_id": customer_id, "name": name, "email_address": email_address,
-                              "phone_number": phone_number}, "vehicle_number": vehicle_number,
-                              "vehicle_type": vehicle_type}
+                                       "phone_number": phone_number}, "vehicle_number": vehicle_number,
+                          "vehicle_type": vehicle_type}
         return formatted_data, "Vehicle Added Successfully. Customer Details Added."
 
     def add_vehicle_category(self, slot_type, total_capacity, parking_charge):
@@ -107,6 +101,7 @@ class ProgramDriver:
         if parking_charge < 0:
             raise ValueError("Parking Charge cannot be less than 0")
         vehicle.add_vehicle_category(slot_type, total_capacity, parking_charge)
+        return True
 
     def check_parking_capacity(self):
 
@@ -121,14 +116,15 @@ class ProgramDriver:
         validations.validate_string_input(parking_category)
 
         parking_space = ParkingSpace(self.db_helper)
-        attributes = parking_space.get_parking_slot_attributes(
+        attributes = parking_space.get_parking_category_details(
             parking_category)
         if not attributes:
             raise ValueError("No Parking Space Exists for this Category")
-        if new_capacity < int(attributes[1]) and parking_space.are_vehicles_already_parked(parking_category,
-                                                                                           new_capacity):
+        if new_capacity < int(attributes[1]) and parking_space.is_space_occupied(parking_category,
+                                                                                 new_capacity):
             raise ValueError("First Remove Vehicles From Parking Space Range")
         parking_space.update_parking_capacity(new_capacity, parking_category)
+        return True
 
     def unassign_slot(self, vehicle_number):
 
@@ -160,9 +156,10 @@ class ProgramDriver:
 
         slot = Slot(self.db_helper)
         parking_space = ParkingSpace(self.db_helper)
-        parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+        parking_space.is_valid_slot(slot_number, vehicle_type)
         slot.check_if_slot_already_occupied(slot_number, vehicle_type)
         slot.ban_slot(slot_number, vehicle_type)
+        return True
 
     def unban_slot(self, slot_number, slot_type):
 
@@ -171,6 +168,7 @@ class ProgramDriver:
 
         slot = Slot(self.db_helper)
         slot.unban_slot(slot_number, slot_type)
+        return True
 
     def view_ban_slots(self):
         slot = Slot(self.db_helper)
@@ -184,6 +182,7 @@ class ProgramDriver:
 
         parking_space = ParkingSpace(self.db_helper)
         parking_space.update_parking_charges(new_charges, parking_category)
+        return True
 
 
 if __name__ == '__main__':

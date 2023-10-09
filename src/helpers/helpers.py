@@ -52,3 +52,11 @@ def return_date_and_time():
 def return_current_date_time():
     datetime_now = datetime.now()
     return datetime_now.strftime("%Y-%m-%d %H:%M")
+
+
+def formated_error(error_code, error_message, status):
+    error = config.error_format
+    error["error"]["code"] = error_code
+    error["error"]["message"] = error_message
+    error["status"] = status
+    return error

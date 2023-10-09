@@ -1,11 +1,12 @@
 import logging
 from src.controllers.billing import Billing
+from src.controllers.parking_space import ParkingSpace
 from src.controllers.vehicle import Vehicle
 from src.helpers.helpers import get_sql_queries
 logger = logging.getLogger(__name__)
 
 
-class Slot(Vehicle, Billing):
+class Slot(Vehicle, Billing, ParkingSpace):
     def __init__(self, db_helper):
         self.sql_queries = get_sql_queries()
         self.slot_number = None

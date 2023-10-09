@@ -14,9 +14,9 @@ router = APIRouter()
 
 
 @router.post("/vehicle")
-@operator_only
 @validate_body(vehicle_schema)
 @handle_errors
+@operator_only
 def add_vehicle(request: Request, request_data=Body()):
     """Add a vehicle to the database"""
     parameters = (request_data.get("vehicle_number"),

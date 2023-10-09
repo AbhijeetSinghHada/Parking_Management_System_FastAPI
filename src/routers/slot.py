@@ -15,8 +15,8 @@ program_driver = ProgramDriver(db)
 
 @router.post("/slots")
 @validate_body(slot_schema)
-@operator_only
 @handle_errors
+@operator_only
 def assign_slot(request: Request, request_data=Body()):
     """Assign a slot to a vehicle"""
 
@@ -27,8 +27,8 @@ def assign_slot(request: Request, request_data=Body()):
 
 
 @router.get("/slots")
-@operator_only
 @handle_errors
+@operator_only
 def get_slot_table(request: Request, slot_type):
 
     slots = program_driver.get_slot_table_by_category(slot_type)
@@ -36,8 +36,8 @@ def get_slot_table(request: Request, slot_type):
 
 
 @router.delete("/slots")
-@operator_only
 @handle_errors
+@operator_only
 def unpark_vehicle(request: Request, vehicle_number):
 
     slot_data, bill = program_driver.unassign_slot(vehicle_number)
@@ -45,9 +45,9 @@ def unpark_vehicle(request: Request, vehicle_number):
 
 
 @router.post("/slots/ban")
-@admin_only
 @validate_body(ban_slot_schema)
 @handle_errors
+@admin_only
 def ban_slot(request: Request, request_data=Body()):
     program_driver.ban_slot(request_data.get("slot_number"),
                             request_data.get("vehicle_type"))
@@ -55,9 +55,9 @@ def ban_slot(request: Request, request_data=Body()):
 
 
 @router.delete("/slots/ban")
-@admin_only
 @validate_body(ban_slot_schema)
 @handle_errors
+@admin_only
 def unban_slot(request: Request, request_data=Body()):
 
     program_driver.unban_slot(request_data.get("slot_number"),
@@ -68,8 +68,8 @@ def unban_slot(request: Request, request_data=Body()):
 
 
 @router.get("/slots/ban")
-@admin_only
 @handle_errors
+@admin_only
 def view_ban_slot(request: Request):
 
     slots = program_driver.view_ban_slots()
