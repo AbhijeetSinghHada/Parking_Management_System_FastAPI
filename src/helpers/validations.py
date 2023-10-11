@@ -1,41 +1,13 @@
-import re
+import functools
+import traceback
+import logging
 import jsonschema
+from fastapi.responses import JSONResponse
 from jsonschema import ValidationError
-
-EMAIL_REGEX = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
-USERNAME_REGEX = r"^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$"
-PASSWORD_REGEX = r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$"
-VEHICLE_NUMBER_REGEX = r"^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$"
-
-
-def validate_vehicle_number(vehicle_number):
-    if not re.match(VEHICLE_NUMBER_REGEX, vehicle_number):
-        raise ValueError("Invalid Vehicle Number.")
-    return True
-
-
-def validate_integer_input(user_input):
-    if not re.match(r'^[0-9]+$', str(user_input)):
-        raise ValueError("Invalid Integer Input.")
-    return True
-
-
-def validate_string_input(user_input):
-    if not re.match(r'^[A-Za-z]+$', user_input):
-        raise ValueError("Invalid String Input.")
-    return True
-
-
-def validate_phone_number(phone_number):
-    if not re.match(r'^\d{10}$', str(phone_number)):
-        raise ValueError("Invalid Phone Number.")
-    return True
-
-
-def validate_email(email):
-    if not re.fullmatch(EMAIL_REGEX, email):
-        raise ValueError("Invalid Email Address.")
-    return True
+from fastapi import status
+from src.configurations.config import prompts
+from src.helpers.helpers import formated_error
+logger = logging.getLogger(__name__)
 
 
 def validate_request_data(request_data, schema):
@@ -43,3 +15,24 @@ def validate_request_data(request_data, schema):
         jsonschema.validate(instance=request_data, schema=schema)
     except ValidationError as error:
         return error.message.split('\n')[0]
+
+
+def validate_body(schema):
+    def decorator(function):
+        @functools.wraps(function)
+        def wrapper(*args, **kwargs):
+            try:
+                request_data = kwargs.get("request_data")
+                validation_response = validate_request_data(
+                    request_data, schema)
+                if validation_response:
+                    return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content=formated_error(400, str(validation_response), prompts.get("errors").get("BAD_REQUEST_ERROR")))
+                return function(*args, **kwargs)
+            except Exception as error:
+                logger.debug("Error Occurred: {} Method Error: {}".format(function.__name__,
+                                                                          traceback.format_exc()))
+                logger.error("Error Occurred: {} Method Error: {}".format(function.__name__,
+                                                                          str(error)))
+                return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content=formated_error(500, str(error), prompts.get("errors").get("INTERNAL_SERVER_ERROR")))
+        return wrapper
+    return decorator

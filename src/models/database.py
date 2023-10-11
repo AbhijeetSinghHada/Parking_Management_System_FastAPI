@@ -1,6 +1,6 @@
+from src.helpers.logger import log
 import mysql.connector
 from src.configurations import config
-from src.controllers.slot import Slot
 import logging
 logger = logging.getLogger(__name__)
 
@@ -26,23 +26,20 @@ class Database:
         self.cursor = Database.cursor
         self._last = None
 
+    @log(logger=logger)
     def get_multiple_items(self, query, *args):
         self.cursor.execute(query, *args)
         items = self.cursor.fetchall()
-        logger.debug("get_multiple_item called with params {} returned item : {} ".format(args,items))
 
         return items
 
+    @log(logger=logger)
     def update_item(self, query, *args):
         self.cursor.execute(query, *args)
         last = self.cursor.lastrowid
         self.connection.commit()
-        logger.debug("update_item called with params {} returned item : {}, ".format(args, last))
 
         return last
 
 
-if __name__ == "__main__":
-    he = Database()
-    slot = Slot(he)
-    slot.generate_bill('11')
+db = Database()

@@ -1,67 +1,82 @@
 from fastapi import APIRouter, Body, Request
-from src.helpers.decorators import admin_only, handle_errors, operator_only, validate_body
-from src.helpers.driver_program import ProgramDriver
+from src.helpers.access_decorator import grant_access
+from src.controllers.billing import Billing
+from src.controllers.vehicle import Vehicle
+from src.helpers.handle_errors import handle_errors
+from src.helpers.validations import validate_body
+from src.controllers.slot import Slot
+from src.helpers.helpers import return_date_and_time
 from src.schemas import ban_slot_schema, slot_schema
-from src.models.database_helpers import DatabaseHelper
-from src.models.database import Database
 import logging
 logger = logging.getLogger(__name__)
 router = APIRouter()
-
-db = Database()
-db_helper = DatabaseHelper(db)
-program_driver = ProgramDriver(db)
 
 
 @router.post("/slots")
 @validate_body(slot_schema)
 @handle_errors
-@operator_only
-def assign_slot(request: Request, request_data=Body()):
+@grant_access
+def park_vehicle(request: Request, request_data=Body()):
     """Assign a slot to a vehicle"""
+    slot = Slot()
+    vehicle = Vehicle()
+    billing = Billing()
+    vehicle.check_if_vehicle_exists(request_data.get(
+        "vehicle_type"))
 
-    program_driver = ProgramDriver(db)
-    program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
+    date, time = return_date_and_time()
+    billing.insert_into_bill_table(request_data.get(
+        "vehicle_number"), date, time)
+    slot.assign_slot(request_data.get("slot_number"), request_data.get(
         "vehicle_type"), request_data.get("vehicle_number"))
     return request_data
 
 
 @router.get("/slots")
 @handle_errors
-@operator_only
+@grant_access
 def get_slot_table(request: Request, slot_type):
 
-    slots = program_driver.get_slot_table_by_category(slot_type)
-    return slots
+    slot = Slot()
+    slot_table = slot.get_all_slot_status(slot_type)
+    return slot_table
 
 
 @router.delete("/slots")
 @handle_errors
-@operator_only
+@grant_access
 def unpark_vehicle(request: Request, vehicle_number):
 
-    slot_data, bill = program_driver.unassign_slot(vehicle_number)
-    return {"slot": slot_data, "bill": bill}
+    slot = Slot()
+    billing = Billing()
+    slot_details = slot.unassign_slot(vehicle_number)
+
+    billing.update_bill_table(slot_details.get(
+        "bill_id"), slot_details.get("slot_charges"))
+
+    bill = billing.generate_bill(slot_details.get("bill_id"))
+    return {"slot": slot_details, "bill": bill}
 
 
 @router.post("/slots/ban")
 @validate_body(ban_slot_schema)
 @handle_errors
-@admin_only
+@grant_access
 def ban_slot(request: Request, request_data=Body()):
-    program_driver.ban_slot(request_data.get("slot_number"),
-                            request_data.get("vehicle_type"))
+    slot = Slot()
+    slot.ban_slot(request_data.get("slot_number"),
+                  request_data.get("vehicle_type"))
     return request_data
 
 
-@router.delete("/slots/ban")
+@router.patch("/slots/ban")
 @validate_body(ban_slot_schema)
 @handle_errors
-@admin_only
+@grant_access
 def unban_slot(request: Request, request_data=Body()):
-
-    program_driver.unban_slot(request_data.get("slot_number"),
-                              request_data.get("vehicle_type"))
+    slot = Slot()
+    slot.unban_slot(request_data.get("slot_number"),
+                    request_data.get("vehicle_type"))
     logger.debug("Unbanned slot called with params: {}, {}".format(
         request_data.get("slot_number"), request_data.get("vehicle_type")))
     return request_data
@@ -69,8 +84,8 @@ def unban_slot(request: Request, request_data=Body()):
 
 @router.get("/slots/ban")
 @handle_errors
-@admin_only
+@grant_access
 def view_ban_slot(request: Request):
-
-    slots = program_driver.view_ban_slots()
-    return slots
+    slot = Slot()
+    slot_data = slot.view_ban_slots()
+    return slot_data

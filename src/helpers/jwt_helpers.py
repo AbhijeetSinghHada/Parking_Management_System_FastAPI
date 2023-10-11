@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 import os
 from typing import Optional
 from environs import Env
-from fastapi import Request, status
-from fastapi.responses import JSONResponse
+from fastapi import Request
 import jwt
+from src.configurations.config import prompts
 
 from src.helpers.errors import UnauthorizedError
 env = Env()
@@ -15,15 +15,17 @@ ALGORITHM = os.getenv("ALGORITHM")
 
 
 def validate_access_token(request: Request):
-    token = request.cookies.get("access_token")
+    token = request.headers.get("Authorization").split(" ")[1]
     if not token:
         raise UnauthorizedError("Token Not Found")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     except jwt.ExpiredSignatureError:
-        raise UnauthorizedError("Token Expired")
+        raise UnauthorizedError(prompts.get(
+            "errors").get("EXPIRED_TOKEN_ERROR"))
     except jwt.InvalidTokenError:
-        raise UnauthorizedError("Invalid Token")
+        raise UnauthorizedError(prompts.get(
+            "errors").get("INVALID_TOKEN_ERROR"))
     return payload
 
 

@@ -1,27 +1,14 @@
-import json
 from datetime import datetime, date
 import logging
-from src.configurations import config
+from src.configurations.config import error_format
 logger = logging.getLogger(__name__)
 
 
 def convert_user_details_to_dict(lst):
-    logger.debug(
-        "convert_user_details_to_dict called with params {}".format(lst))
     user_dict = {'name': lst[0][0],
                  'user_id': lst[0][1],
                  'role': [x[2] for x in lst]}
     return user_dict
-
-
-def get_prompts():
-    with open(config.prompts_path, "r") as fp:
-        return json.load(fp)
-
-
-def get_sql_queries():
-    with open(config.sql_queries_path, "r") as fp:
-        return json.load(fp)
 
 
 def return_time_difference(_date, _time):
@@ -55,7 +42,7 @@ def return_current_date_time():
 
 
 def formated_error(error_code, error_message, status):
-    error = config.error_format
+    error = error_format
     error["error"]["code"] = error_code
     error["error"]["message"] = error_message
     error["status"] = status

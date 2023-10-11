@@ -1,73 +1,126 @@
 import logging
-from src.controllers.billing import Billing
+from src.models.database import db
 from src.controllers.parking_space import ParkingSpace
-from src.controllers.vehicle import Vehicle
-from src.helpers.helpers import get_sql_queries
+from src.helpers.errors import ConflictError
+from src.configurations.config import prompts, sql_queries
+from src.helpers.logger import log
 logger = logging.getLogger(__name__)
 
 
-class Slot(Vehicle, Billing, ParkingSpace):
-    def __init__(self, db_helper):
-        self.sql_queries = get_sql_queries()
-        self.slot_number = None
-        self.db_helpers = db_helper
+class Slot(ParkingSpace):
 
-    def get_slot_data_by_slot_type(self, vehicle_type):
-        logger.debug("get_slot_data_by_slot_type called with params {}".format(
-            vehicle_type))
-        slot_data = self.db_helpers.get_slots_data()
-        slot_type_capacity = self.db_helpers.get_parking_capacity(vehicle_type)
+    all_slots_data = []
+
+    def __init__(self):
+        self.slot_number = None
+
+    @log(logger=logger)
+    def get_all_slot_status(self, vehicle_type):
+
+        slot_data = self.__get_slots_data()
+        slot_type_capacity = self.get_parking_capacity(vehicle_type)
         if not slot_type_capacity:
-            raise ValueError("No such slot type exists.")
+            raise ValueError(prompts.get("INVALID_SLOT_TYPE"))
         occupied_slot_numbers = [x[0]
                                  for x in slot_data if x[2] == vehicle_type]
-        all_slots_data = []
+        slot_table = []
 
         for i in range(1, int(slot_type_capacity) + 1):
             if i in occupied_slot_numbers:
-                all_slots_data.append({"slot_id": i, "status": "Occupied"})
+                slot_table.append({"slot_id": i, "status": "Occupied"})
                 continue
-            all_slots_data.append({"slot_id": i, "status": "Not Occupied"})
-        return all_slots_data
+            slot_table.append({"slot_id": i, "status": "Not Occupied"})
+        return slot_table
 
-    def assign_slot(self, slot_number, vehicle_number, vehicle_type):
-        logger.debug("assign_slot called")
+    @log(logger=logger)
+    def assign_slot(self, slot_number, vehicle_type, vehicle_number):
 
-        self.db_helpers.insert_into_slot_table(slot_number, vehicle_number, vehicle_type)
+        self.is_vehicle_type_existing(vehicle_type)
+        self.is_slot_number_existing(slot_number, vehicle_type)
+        self.__is_slot_available(slot_number, vehicle_type)
+        self.__is_already_parked(vehicle_number)
 
-    def check_if_slot_already_occupied(self, slot_number, slot_type):
-        logger.debug(
-            "check_if_slot_already_occupied called with params {}, {}".format
-            (slot_number, slot_type))
-        slot_data = self.db_helpers.get_slots_data()
-        slot_data_by_type = [x[0] for x in slot_data if x[2] == slot_type]
-        if slot_number in slot_data_by_type:
-            raise LookupError(
-                "Slot Already Occupied! Choose One Which is not.")
+        db.update_item(sql_queries.get("insert_into_slot"),
+                       (slot_number, vehicle_number, vehicle_type,))
+        self.__reset_all_slot_data()
 
-    def unassign_slot(self, slot_id):
-        logger.debug("unassign_slot called with params {}".format(
-            slot_id))
+    @log(logger=logger)
+    def unassign_slot(self, vehicle_number):
+        slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
 
-        self.db_helpers.remove_parked_slot(slot_id)
+        db.update_item(
+            sql_queries.get("delete_parked_slot"), (slot_details.get("slot_id"),))
+        self.__reset_all_slot_data()
+        del slot_details["slot_id"]
+        return slot_details
 
+    @log(logger=logger)
     def ban_slot(self, slot_number, vehicle_type):
-        logger.debug("ban_slot called")
-        self.db_helpers.ban_slot_by_slot_number(slot_number, vehicle_type)
+        self.is_slot_number_existing(slot_number, vehicle_type)
+        self.__is_slot_available(slot_number, vehicle_type)
 
+        db.update_item(sql_queries.get("ban_slot"),
+                       (slot_number, vehicle_type))
+        self.__reset_all_slot_data()
+        return True
+
+    @log(logger=logger)
     def view_ban_slots(self):
         logger.debug("view_ban_slots called")
-        data = self.db_helpers.get_slots_data()
-        data = [{"slot_number" : x[0], "vehicle_type" : x[2]} for x in data if x[1] == -1]
-        if not data:
-            raise ValueError("No Banned Slots.")
+        data = self.__get_slots_data()
+        data = [{"slot_number": x[0], "vehicle_type": x[2]}
+                for x in data if x[1] == -1]
         return data
 
+    @log(logger=logger)
     def unban_slot(self, slot_number, slot_type):
         logger.debug("unban_slot called")
+        db.update_item(
+            sql_queries.get("unban_slot"), (slot_number, slot_type))
+        self.__reset_all_slot_data()
 
-        self.db_helpers.unban_slot(slot_number, slot_type)
+    @classmethod
+    def __get_slots_data(self):
+        if self.all_slots_data:
+            return self.all_slots_data
+        Slot.all_slots_data = db.get_multiple_items(
+            sql_queries.get("slot_data"))
+        return self.all_slots_data
 
+    def __is_already_parked(self, vehicle_number):
+        slots_data = self.__get_slots_data()
+        for slot in slots_data:
+            if slot[5] == vehicle_number:
+                raise ConflictError(prompts.get("VEHICLE_ALREADY_PARKED"))
+        return False
 
-if __name__ == "__main__":
-    print("")
+    def __is_slot_available(self, slot_number, slot_type):
+        slot_data = self.__get_slots_data()
+        slot_data_by_type = [x[0] for x in slot_data if x[2] == slot_type]
+        if slot_number in slot_data_by_type:
+            raise LookupError(prompts.get("SLOT_OCCUPIED"))
+
+    def __get_slot_details_by_vehicle(self, vehicle_number):
+        slot_data = self.__get_slots_data()
+        for slot in slot_data:
+            if slot[5] == vehicle_number:
+                slot_details = {}
+                slot_details["slot_number"] = slot[0]
+                slot_details["vehicle_number"] = slot[5]
+                slot_details["vehicle_type"] = slot[2]
+                slot_details["slot_id"] = slot[7]
+                slot_details["slot_charges"] = slot[6]
+                slot_details["bill_id"] = slot[4]
+                return slot_details
+        raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+
+    def is_space_occupied(self, parking_category, new_capacity):
+        slot_data = self.__get_slots_data()
+        for i in slot_data:
+            if i[2] == parking_category and i[0] > new_capacity:
+                return True
+        return False
+
+    @classmethod
+    def __reset_all_slot_data(self):
+        Slot.all_slots_data = []

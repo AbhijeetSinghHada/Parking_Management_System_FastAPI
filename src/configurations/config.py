@@ -1,16 +1,35 @@
+import json
+
+connection_parameters = None
+error_format = None
+access_control_list = None
+sql_queries = None
+prompts = None
 
 
-connection_parameters = {"host": "127.0.0.1", "user": "root", "password": "2233",
-                         "database": "parkingmanagement", "auth_plugin": 'mysql_native_password'}
+def load_configuration():
+    with open("src/configurations/config.json", "r") as fp:
 
-prompts_path = "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\prompts.json"
+        config = json.load(fp)
+        connection_parameters = config.get("connection_parameters")
+        prompts_path = config.get("prompts_path")
+        sql_queries_path = config.get("sql_queries_path")
+        error_format = config.get("error_format")
+        access_control_list = config.get("access_control_list")
+        prompts = get_prompts(prompts_path)
+        sql_queries = get_sql_queries(sql_queries_path)
 
-sql_queries_path = "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\sql_queries.json"
+        return connection_parameters, prompts, sql_queries, error_format, access_control_list
 
-error_format = {
-    "error": {
-        "code": 0,
-        "message": ""
-    },
-    "status": ""
-}
+
+def get_prompts(prompts_path):
+    with open(prompts_path, "r") as fp:
+        return json.load(fp)
+
+
+def get_sql_queries(sql_queries_path):
+    with open(sql_queries_path, "r") as fp:
+        return json.load(fp)
+
+
+connection_parameters, prompts, sql_queries, error_format, access_control_list = load_configuration()

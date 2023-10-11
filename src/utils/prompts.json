@@ -1,20 +1,30 @@
 {
-    "menu": {
-        "ADMIN_VIEW": "\nPark+ Admin Menu!! Choose from the options below -\n1) Check Parking Capacity\n2) Add Vehicle Category\n3) Update Parking Space\n4) Update Parking Charges\n5) Ban Slot\n6) Unban Slot\n7) View Ban Slots\n8) Quit\n",
-        "OPERATOR_VIEW": "\nPark+ Operator Menu!! Choose from the options below -\n1) Check Parking Capacity\n2) Add Vehicle\n3) Assign Slot\n4) Un-Assign Slot\n5) Quit",
-        "ADMIN_MENU_VIEW": "\nWelcome to Park+!! Choose from the options below -\n\n1) Admin View\n2) Operator \n3) Quit\n",
-        "LOGIN_VIEW": "Hello Welcome to Park+!! Choose from the options below -\n1) Login\n2) Exit"
-    },
-    "prompts": {
-        "BILL_FORMAT": "Bill ID : {}\nCustomer ID : {}\nCustomer Name : {}\nEmail Address : {}\nPhone Number : {}\nVehicle Number : {}\nVehicle Type : {}\nTimestamp Parked In : {}\nTimestamp Parked Out : {}\nTotal Charges : {}",
-        "INVALID_DETAILS": "Invalid Login Details",
-        "BILL_NOT_EXISTS": "Bill ID do not Exists.",
-        "INPUT_CUSTOMER_ID": "Enter Customer ID (Leave if not known): ",
-        "INPUT_CUSTOMER_NAME": "Enter Customer Name : ",
-        "INPUT_EMAIL": "Enter Email Address : ",
-        "INPUT_PHONE": "Enter Phone Number : ",
-        "INPUT_VEHICLE_NUMBER": "Enter Vehicle Number : ",
-        "INPUT_INDEX_SLOT_CATEGORY": "Enter the Index of Slot Category to Add Parking Space : ",
-        "INPUT_NEW_CAPACITY": "Enter New Capacity : "
+    "BILL_FORMAT": "Bill ID : {}\nCustomer ID : {}\nCustomer Name : {}\nEmail Address : {}\nPhone Number : {}\nVehicle Number : {}\nVehicle Type : {}\nTimestamp Parked In : {}\nTimestamp Parked Out : {}\nTotal Charges : {}",
+    "INVALID_DETAILS": "Invalid Login Details",
+    "BILL_NOT_EXISTS": "Bill ID do not Exists.",
+    "SLOT_OCCUPIED": "Slot Already Occupied! Choose One Which is not.",
+    "VEHICLE_NOT_PARKED": "Vehicle do not have any assigned slot.",
+    "VEHICLE_ALREADY_PARKED": "Vehicle Already Parked.",
+    "INVALID_SLOT_TYPE": "No such slot type exists.",
+    "FETCH_CUSTOMER_DATA_ERROR": "Cannot Fetch Customer Data.",
+    "INSERT_CUSTOMER_ERROR": "Cannot Insert Customer Data.",
+    "GET_BILLING_DATA_ERROR": "Cannot Fetch Billing Data.",
+    "INSERT_BILLING_DATA_ERROR": "Cannot Insert Billing Data.",
+    "VEHICLE_ALREADY_EXISTS": "Vehicle Already Exists.",
+    "CANNOT_FETCH_VEHICLE_DATA": "Cannot Fetch Vehicle Data.",
+    "CANNOT_INSERT_VEHICLE_DATA": "Cannot Insert Vehicle Data.",
+    "SLOT_NUMBER_EXCEEDS_CAPACITY": "Slot Number Exceeds Capacity.",
+    "VEHICLE_TYPE_NOT_FOUND": "Vehicle Type Not Found.",
+    "FETCH_PARKING_CAPACITY_ERROR": "Cannot Fetch Parking Capacity.",
+    "FETCH_PARKING_SPACE_ERROR": "Cannot Fetch Vehicle Category Data.",
+    "errors": {
+        "INTERNAL_SERVER_ERROR": "An Error Occurred Internally in the Server",
+        "CONFLICT_ERROR": "Conflict in the Database",
+        "UNAUTHORIZED_ERROR": "Unauthorized Access",
+        "BAD_REQUEST_ERROR": "Bad Request",
+        "FORBIDDEN_ERROR": "Forbidden Access",
+        "FORBIDDEN_STATUS": "You are not allowed to perform this operation.",
+        "EXPIRED_TOKEN_ERROR": "Token Expired",
+        "INVALID_TOKEN_ERROR": "Invalid Token"
     }
 }
