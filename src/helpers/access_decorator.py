@@ -7,6 +7,7 @@ from src.configurations.config import access_control_list, prompts
 
 
 def grant_access(fun):
+    """Decorator to grant access to the user"""    
     @functools.wraps(fun)
     def wrapper(*args, **kwargs):
         request = kwargs.get("request")
@@ -18,8 +19,8 @@ def grant_access(fun):
             allowed_operations.extend(access_control_list.get(role))
         if operation in allowed_operations:
             return fun(*args, **kwargs)
-        else:
-            return JSONResponse(
+
+        return JSONResponse(
                 status_code=status.HTTP_403_FORBIDDEN,
                 content=formated_error(
                     error_code=500,

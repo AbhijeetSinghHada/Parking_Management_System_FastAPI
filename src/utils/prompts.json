@@ -3,6 +3,7 @@
     "INVALID_DETAILS": "Invalid Login Details",
     "BILL_NOT_EXISTS": "Bill ID do not Exists.",
     "SLOT_OCCUPIED": "Slot Already Occupied! Choose One Which is not.",
+    "SPACE_OCCUPIED": "Cannot reduce capacity. Space is occupied.",
     "VEHICLE_NOT_PARKED": "Vehicle do not have any assigned slot.",
     "VEHICLE_ALREADY_PARKED": "Vehicle Already Parked.",
     "INVALID_SLOT_TYPE": "No such slot type exists.",
@@ -17,6 +18,8 @@
     "VEHICLE_TYPE_NOT_FOUND": "Vehicle Type Not Found.",
     "FETCH_PARKING_CAPACITY_ERROR": "Cannot Fetch Parking Capacity.",
     "FETCH_PARKING_SPACE_ERROR": "Cannot Fetch Vehicle Category Data.",
+    "CUSTOMER_EXISTS_VEHICLE_ADDED": "Vehicle Added Successfully. Customer Details Existed.",
+    "CUSTOMER_AND_VEHICLE_ADDED": "Vehicle Added Successfully. Customer Details Added.",
     "errors": {
         "INTERNAL_SERVER_ERROR": "An Error Occurred Internally in the Server",
         "CONFLICT_ERROR": "Conflict in the Database",

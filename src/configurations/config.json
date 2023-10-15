@@ -1,21 +1,21 @@
 {
-    "connection_parameters": {
+    "CONNECTION_PARAMETERS": {
         "host": "127.0.0.1",
         "user": "root",
         "password": "2233",
         "database": "parkingmanagement",
         "auth_plugin": "mysql_native_password"
     },
-    "prompts_path": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\prompts.json",
-    "sql_queries_path": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\sql_queries.json",
-    "error_format": {
+    "PROMPTS_PATH": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\prompts.json",
+    "SQL_QUERIES_PATH": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\sql_queries.json",
+    "ERROR_FORMAT": {
         "error": {
             "code": 0,
             "message": ""
         },
         "status": ""
     },
-    "access_control_list": {
+    "ACCESS_CONTROL_LIST": {
         "Admin": [
             "ban_slot",
             "unban_slot",
@@ -26,8 +26,8 @@
         ],
         "Operator": [
             "get_slot_table",
-            "park_vehicle",
-            "unpark_vehicle",
+            "park_vehicle_on_slot",
+            "unpark_vehicle_from_slot",
             "add_vehicle",
             "get_parking_space"
         ]

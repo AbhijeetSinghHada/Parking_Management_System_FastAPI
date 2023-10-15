@@ -1,11 +1,13 @@
-from src.configurations import config
-from src.helpers.helpers import get_sql_queries, get_prompts, convert_user_details_to_dict, return_date_and_time, return_current_date_time
-from unittest.mock import mock_open, patch
+
+from src.helpers.helpers import (convert_user_details_to_dict, 
+                                return_date_and_time, 
+                                return_current_date_time,
+                                return_no_of_hours_elapsed,
+                                formated_error)
+from unittest.mock import MagicMock, patch
 from unittest import TestCase
 import datetime
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 
 
 class TestHelpers(TestCase):
@@ -29,10 +31,52 @@ class TestHelpers(TestCase):
         datetime_now = datetime.datetime.now()
         assert return_current_date_time() == datetime_now.strftime("%Y-%m-%d %H:%M")
 
-    def test_get_prompts(self):
-        with patch('builtins.open', mock_open(read_data='{"key": "value"}')) as m:
-            assert get_prompts() == {"key": "value"}     
+    @patch("src.helpers.helpers.return_time_difference")
+    def test_return_no_of_hours_elapsed(self, mock_return_time_difference):
+        mock_return_time_difference.return_value = datetime.timedelta(minutes=60)
+        assert return_no_of_hours_elapsed(datetime.date(2023,9,11),
+                                            datetime.time(10,15)) == 1
+        mock_return_time_difference.return_value = datetime.timedelta(minutes=140)
+        assert return_no_of_hours_elapsed(datetime.datetime(2023,9,11,10,15),
+                                            datetime.datetime(2023,9,11,11,15)) == 2
+        mock_return_time_difference.return_value = datetime.timedelta(minutes=200)
+        assert return_no_of_hours_elapsed(datetime.datetime(2023,9,11,10,15),
+                                            datetime.datetime(2023,9,11,12,14)) == 3
 
-    def test_get_sql_queries(self):
-        with patch('builtins.open', mock_open(read_data='{"key": "value"}')) as m:
-            assert get_sql_queries() == {"key": "value"}
+    def test_formated_error(self):
+        assert formated_error(400, "Bad Request", "error") == {
+            "error": {
+                "code": 400,
+                "message": "Bad Request"
+            },
+            "status": "error"
+        }
+        assert formated_error(500, "Internal Server Error", "error") == {
+            "error": {
+                "code": 500,
+                "message": "Internal Server Error"
+            },
+            "status": "error"
+        }
+        assert formated_error(401, "Unauthorized", "error") == {
+            "error": {
+                "code": 401,
+                "message": "Unauthorized"
+            },
+            "status": "error"
+        }
+        assert formated_error(403, "Forbidden", "error") == {
+            "error": {
+                "code": 403,
+                "message": "Forbidden"
+            },
+            "status": "error"
+        }
+        assert formated_error(409, "Conflict", "error") == {
+            "error": {
+                "code": 409,
+                "message": "Conflict"
+            },
+            "status": "error"
+        }
+        

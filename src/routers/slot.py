@@ -6,18 +6,17 @@ from src.helpers.handle_errors import handle_errors
 from src.helpers.validations import validate_body
 from src.controllers.slot import Slot
 from src.helpers.helpers import return_date_and_time
-from src.schemas import ban_slot_schema, slot_schema
-import logging
-logger = logging.getLogger(__name__)
+from src.helpers.schemas.slot_schemas import ban_slot_schema, slot_schema
+
 router = APIRouter()
 
 
 @router.post("/slots")
-@validate_body(slot_schema)
 @handle_errors
 @grant_access
-def park_vehicle(request: Request, request_data=Body()):
-    """Assign a slot to a vehicle"""
+@validate_body(slot_schema)
+def park_vehicle_on_slot(request: Request, request_data=Body()):
+    """Park a vehicle"""
     slot = Slot()
     vehicle = Vehicle()
     billing = Billing()
@@ -36,6 +35,7 @@ def park_vehicle(request: Request, request_data=Body()):
 @handle_errors
 @grant_access
 def get_slot_table(request: Request, slot_type):
+    """Get slot table showing slot status for every slot in the parking space"""
 
     slot = Slot()
     slot_table = slot.get_all_slot_status(slot_type)
@@ -45,7 +45,8 @@ def get_slot_table(request: Request, slot_type):
 @router.delete("/slots")
 @handle_errors
 @grant_access
-def unpark_vehicle(request: Request, vehicle_number):
+def unpark_vehicle_from_slot(request: Request, vehicle_number):
+    """Unpark a vehicle from a slot"""
 
     slot = Slot()
     billing = Billing()
@@ -59,10 +60,12 @@ def unpark_vehicle(request: Request, vehicle_number):
 
 
 @router.post("/slots/ban")
-@validate_body(ban_slot_schema)
 @handle_errors
 @grant_access
+@validate_body(ban_slot_schema)
 def ban_slot(request: Request, request_data=Body()):
+    """Ban a slot, that no vehicle can be parked on it"""
+
     slot = Slot()
     slot.ban_slot(request_data.get("slot_number"),
                   request_data.get("vehicle_type"))
@@ -70,15 +73,16 @@ def ban_slot(request: Request, request_data=Body()):
 
 
 @router.patch("/slots/ban")
-@validate_body(ban_slot_schema)
 @handle_errors
 @grant_access
+@validate_body(ban_slot_schema)
 def unban_slot(request: Request, request_data=Body()):
+    """Unban a slot"""
+
     slot = Slot()
     slot.unban_slot(request_data.get("slot_number"),
                     request_data.get("vehicle_type"))
-    logger.debug("Unbanned slot called with params: {}, {}".format(
-        request_data.get("slot_number"), request_data.get("vehicle_type")))
+    
     return request_data
 
 
@@ -86,6 +90,8 @@ def unban_slot(request: Request, request_data=Body()):
 @handle_errors
 @grant_access
 def view_ban_slot(request: Request):
+    """View all banned slots"""
+
     slot = Slot()
     slot_data = slot.view_ban_slots()
     return slot_data

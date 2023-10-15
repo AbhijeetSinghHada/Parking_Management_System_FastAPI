@@ -1,21 +1,76 @@
-import logging
-from src.models.database import db
 from src.controllers.parking_space import ParkingSpace
 from src.helpers.errors import ConflictError
+from src.models.database import db
 from src.configurations.config import prompts, sql_queries
-from src.helpers.logger import log
-logger = logging.getLogger(__name__)
 
 
 class Slot(ParkingSpace):
 
-    all_slots_data = []
+    def assign_slot(self, slot_number, vehicle_type, vehicle_number):
+        """Assign a slot to a vehicle
+        Args:
+            slot_number (int): The slot number to be assigned
+            vehicle_type (str): The vehicle type of the vehicle to be parked
+            vehicle_number (str): The vehicle number of the vehicle to be parked"""
 
-    def __init__(self):
-        self.slot_number = None
+        self.is_vehicle_type_existing(vehicle_type)
+        self.is_slot_number_existing(slot_number, vehicle_type)
+        self.__is_slot_available(slot_number, vehicle_type)
+        self.__is_already_parked(vehicle_number)
 
-    @log(logger=logger)
+        db.insert_item(sql_queries.get("insert_into_slot"),
+                       (slot_number, vehicle_number, vehicle_type,))
+        return True
+
+    def unassign_slot(self, vehicle_number):
+        """Unassign a slot from a vehicle
+        Args:
+            vehicle_number (str): The vehicle number of the vehicle to be unparked"""
+        
+        slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+
+        db.delete_item(
+            sql_queries.get("delete_parked_slot"), (slot_details.get("slot_id"),))
+        del slot_details["slot_id"]
+        return slot_details
+
+    def ban_slot(self, slot_number, slot_type):
+        """Ban a slot
+        Args:
+            slot_number (int): The slot number to be banned
+            slot_type (str): The slot type of the slot to be banned"""
+
+        self.is_slot_number_existing(slot_number, slot_type)
+        self.__is_slot_available(slot_number, slot_type)
+        db.insert_item(sql_queries.get("ban_slot"),
+                       (slot_number, slot_type))
+        return True
+
+    def view_ban_slots(self):
+        """Returns all the banned slots for each slot type
+        Returns: The banned slots in the form of a list of dictionary"""
+
+        data = self.__get_slots_data()
+        data = [{"slot_number": x[0], "vehicle_type": x[2]}
+                for x in data if x[1] == -1]
+        return data
+        
+
+    def unban_slot(self, slot_number, slot_type):
+        """Unban a slot
+        Args:
+            slot_number (int): The slot number to be unbanned
+            slot_type (str): The slot type of the slot to be unbanned"""
+        
+        db.delete_item(
+            sql_queries.get("unban_slot"), (slot_number, slot_type))
+        return True
+
     def get_all_slot_status(self, vehicle_type):
+        """Get the status of all the slots for a particular slot type
+        Args:
+            vehicle_type (str): The slot type of the slots to be fetched
+        Returns: The status of the slots in the form of a list of dictionary"""
 
         slot_data = self.__get_slots_data()
         slot_type_capacity = self.get_parking_capacity(vehicle_type)
@@ -32,62 +87,20 @@ class Slot(ParkingSpace):
             slot_table.append({"slot_id": i, "status": "Not Occupied"})
         return slot_table
 
-    @log(logger=logger)
-    def assign_slot(self, slot_number, vehicle_type, vehicle_number):
-
-        self.is_vehicle_type_existing(vehicle_type)
-        self.is_slot_number_existing(slot_number, vehicle_type)
-        self.__is_slot_available(slot_number, vehicle_type)
-        self.__is_already_parked(vehicle_number)
-
-        db.update_item(sql_queries.get("insert_into_slot"),
-                       (slot_number, vehicle_number, vehicle_type,))
-        self.__reset_all_slot_data()
-
-    @log(logger=logger)
-    def unassign_slot(self, vehicle_number):
-        slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
-
-        db.update_item(
-            sql_queries.get("delete_parked_slot"), (slot_details.get("slot_id"),))
-        self.__reset_all_slot_data()
-        del slot_details["slot_id"]
-        return slot_details
-
-    @log(logger=logger)
-    def ban_slot(self, slot_number, vehicle_type):
-        self.is_slot_number_existing(slot_number, vehicle_type)
-        self.__is_slot_available(slot_number, vehicle_type)
-
-        db.update_item(sql_queries.get("ban_slot"),
-                       (slot_number, vehicle_type))
-        self.__reset_all_slot_data()
-        return True
-
-    @log(logger=logger)
-    def view_ban_slots(self):
-        logger.debug("view_ban_slots called")
-        data = self.__get_slots_data()
-        data = [{"slot_number": x[0], "vehicle_type": x[2]}
-                for x in data if x[1] == -1]
-        return data
-
-    @log(logger=logger)
-    def unban_slot(self, slot_number, slot_type):
-        logger.debug("unban_slot called")
-        db.update_item(
-            sql_queries.get("unban_slot"), (slot_number, slot_type))
-        self.__reset_all_slot_data()
-
-    @classmethod
     def __get_slots_data(self):
-        if self.all_slots_data:
-            return self.all_slots_data
-        Slot.all_slots_data = db.get_multiple_items(
+        """Get the slots data from the database
+        Returns: The slots data in the form of a list of tuples"""
+
+        all_slots_data = db.get_multiple_items(
             sql_queries.get("slot_data"))
-        return self.all_slots_data
+        return all_slots_data
 
     def __is_already_parked(self, vehicle_number):
+        """Check if the vehicle is already parked
+        Args:
+            vehicle_number (str): The vehicle number of the vehicle to be checked
+        Returns: False if the vehicle is not already parked"""
+
         slots_data = self.__get_slots_data()
         for slot in slots_data:
             if slot[5] == vehicle_number:
@@ -95,32 +108,45 @@ class Slot(ParkingSpace):
         return False
 
     def __is_slot_available(self, slot_number, slot_type):
+        """Check if the slot is available
+        Args:
+            slot_number (int): The slot number to be checked
+            slot_type (str): The slot type of the slot to be checked"""
+            
         slot_data = self.__get_slots_data()
         slot_data_by_type = [x[0] for x in slot_data if x[2] == slot_type]
         if slot_number in slot_data_by_type:
-            raise LookupError(prompts.get("SLOT_OCCUPIED"))
+            raise ConflictError(prompts.get("SLOT_OCCUPIED"))
 
     def __get_slot_details_by_vehicle(self, vehicle_number):
+        """Get the slot details by vehicle number
+        Args:
+            vehicle_number (str): The vehicle number of the vehicle to be fetched
+        Returns: The slot details in the form of a dictionary"""
+
         slot_data = self.__get_slots_data()
         for slot in slot_data:
             if slot[5] == vehicle_number:
-                slot_details = {}
-                slot_details["slot_number"] = slot[0]
-                slot_details["vehicle_number"] = slot[5]
-                slot_details["vehicle_type"] = slot[2]
-                slot_details["slot_id"] = slot[7]
-                slot_details["slot_charges"] = slot[6]
-                slot_details["bill_id"] = slot[4]
+                slot_details = {
+                    "slot_number": slot[0],
+                    "vehicle_number": slot[5],
+                    "vehicle_type": slot[2],
+                    "slot_id": slot[7],
+                    "slot_charges": slot[6],
+                    "bill_id": slot[4]
+                }
                 return slot_details
         raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
 
     def is_space_occupied(self, parking_category, new_capacity):
+        """Check if the parking space is occupied
+        Args:
+            parking_category (str): The parking category to be checked
+            new_capacity (int): The new capacity of the parking category
+        Returns: True if the parking space is occupied"""
+
         slot_data = self.__get_slots_data()
         for i in slot_data:
             if i[2] == parking_category and i[0] > new_capacity:
                 return True
         return False
-
-    @classmethod
-    def __reset_all_slot_data(self):
-        Slot.all_slots_data = []

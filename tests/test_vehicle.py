@@ -1,44 +1,55 @@
+from unittest.mock import MagicMock, patch
 from src.controllers.vehicle import Vehicle
-from unittest.mock import Mock
+
+
 import unittest
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
 class TestVehicle(unittest.TestCase):
 
     def setUp(self):
-        self.db_helper = Mock()
-        self.vehicle = Vehicle(self.db_helper)
+        self.vehicle = Vehicle()
+        self.vehicle_data = [
+            (1, 1, 'LMV', 1, 'RJ20CD7259'),
+        ]
 
-    def test_check_if_vehicle_exists_positive(self):
-        self.db_helper.get_vehicle_data.return_value = [
-            (1, 'Kittu', 'kittu@gmail.com', '1234567890', 'RJ20CD7259', 'LMV')]
-
-        data = self.vehicle.check_if_vehicle_exists('RJ20CD7259')
-        self.assertEqual(data, [
-            (1, 'Kittu', 'kittu@gmail.com', '1234567890', 'RJ20CD7259', 'LMV')])
-
-    def test_check_if_vehicle_exists_negative(self):
-        self.db_helper.get_vehicle_data.return_value = []
-
-        data = self.vehicle.check_if_vehicle_exists('RJ20CD7259')
-        self.assertEqual(data, None)
-
-    def test_add_vehicle(self):
-        self.db_helper.insert_vehicle.return_value = None
-        self.vehicle.add_vehicle('RJ20CD7259', 'LMV')
-        return_val = self.db_helper.insert_vehicle('RJ20CD7259', 'LMV')
-        self.assertEqual(return_val, None)
-
-    def test_add_vehicle_category(self):
-        self.db_helper.add_vehicle_category.return_value = None
-        self.vehicle.add_vehicle_category('LMV', 20, 100)
-        return_val = self.db_helper.add_vehicle_category('LMV', 20, 100)
-        self.assertEqual(return_val, None)
+    @patch('src.controllers.vehicle.db')
+    def test_add_vehicle_success(self, mock_db): 
+        mock_db.insert_item.return_value = True    
+        self.vehicle.check_if_vehicle_exists = MagicMock(return_value = False)
+        self.assertEqual(self.vehicle.add_vehicle('RJ20CD7259', 'LMV', 1), True)
 
 
+    @patch('src.controllers.vehicle.db')
+    def test_add_vehicle_failure(self, mock_db): 
+        mock_db.insert_item.return_value = True    
+        self.vehicle.check_if_vehicle_exists = MagicMock(return_value = True)
+        self.assertRaises(ValueError, self.vehicle.add_vehicle, 'RJ20CD7259', 'LMV', 1)
 
-if __name__ == '__main__':
-    unittest.main()
+    @patch.object(Vehicle, '_Vehicle__get_vehicle_data', new_callable=MagicMock)
+    def test_check_if_vehicle_exists_success(self, mock_get_vehicle_data):
+
+        mock_get_vehicle_data.return_value = self.vehicle_data
+        self.assertEqual(self.vehicle.check_if_vehicle_exists('RJ20CD7259'), True)
+        self.vehicle._Vehicle__get_vehicle_data.assert_called()
+
+    @patch.object(Vehicle, '_Vehicle__get_vehicle_data', new_callable=MagicMock)
+    def test_check_if_vehicle_exists_failure(self, mock_get_vehicle_data):
+
+        mock_get_vehicle_data.return_value = []
+        self.assertEqual(self.vehicle.check_if_vehicle_exists('RJ20CD7722'), False)
+        self.vehicle._Vehicle__get_vehicle_data.assert_called()
+    
+
+    @patch('src.controllers.vehicle.db')
+    def test_get_vehicle_data_success(self, mock_db):
+        mock_db.get_multiple_items.return_value = self.vehicle_data
+        self.assertEqual(self.vehicle._Vehicle__get_vehicle_data(vehicle_number='RJ20CD7259'), self.vehicle_data)
+        self.assertEqual(self.vehicle._Vehicle__get_vehicle_data(customer_id=1), self.vehicle_data)
+        self.assertEqual(self.vehicle._Vehicle__get_vehicle_data(email_address = "test@gmail.com"), self.vehicle_data)
+
+    
+    @patch('src.controllers.vehicle.db')
+    def test_get_vehicle_data_failure(self, mock_db):
+        mock_db.get_multiple_items.side_effect = Exception("Error")
+        self.assertRaises(ResourceWarning, self.vehicle._Vehicle__get_vehicle_data, vehicle_number='RJ20CD7259')

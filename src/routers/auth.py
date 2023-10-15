@@ -1,26 +1,20 @@
 from datetime import timedelta
-from fastapi import APIRouter, Body, Response
+from fastapi import APIRouter, Body
 from src.controllers.login import Login
-from src.models.database import Database
 from src.helpers.jwt_helpers import create_access_token
 from src.helpers.handle_errors import handle_errors
 from src.helpers.validations import validate_body
-from src.schemas import user_schema
-
-
-
-router = APIRouter()
-
-db = Database()
+from src.helpers.schemas.user_schema import user_schema
 
 
 router = APIRouter()
 
 
 @router.post("/login")
-@validate_body(user_schema)
 @handle_errors
-def login(response: Response, request_data=Body()):
+@validate_body(user_schema)
+def login(request_data=Body()):
+    """Login to the application"""
 
     instance = Login(
         username=request_data.get("username"), password=request_data.get("password"))

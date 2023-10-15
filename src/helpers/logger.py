@@ -1,28 +1,35 @@
 import logging
-import functools
 
 
-def setup_logger(level=logging.DEBUG, filename='log.txt'):
+def setup_logger(log_file):
+    """Function to setup the logger"""
 
-    logging.basicConfig(level=level,
-                        format='%(asctime)s %(name)s:%(lineno)s %(levelname)s:%(message)s',
-                        datefmt='%d-%b-%y %H:%M:%S',
-                        filename=filename
-                        )
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        filename=log_file,)
+    return logging.getLogger()
 
 
-def log(logger):
-    def log_operation(fun):
+def get_logger(name):
+    return logging.getLogger(name)
 
-        @functools.wraps(fun)
-        def wrapper(*args, **kwargs):
-            operation = fun.__name__
-            args_repr = [repr(item) for item in args[1:]]
-            kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
-            signature = ", ".join(args_repr + kwargs_repr)
-            val = fun(*args, **kwargs)
-            logger.debug(
-                f"{operation}  called with params : {signature} returned : {val}.\n")
-            return val
-        return wrapper
-    return log_operation
+
+def log_info(logger, info_message):
+    logger.info(info_message)
+
+
+def log_debug(logger, debug_message):
+    logger.debug(debug_message)
+
+
+def log_warning(logger, warning_message):
+    logger.warning(warning_message)
+
+
+def log_error(logger, error_message):
+    logger.error(error_message)
+
+
+def log_critical(logger, critical_message):
+    logger.critical(critical_message)
