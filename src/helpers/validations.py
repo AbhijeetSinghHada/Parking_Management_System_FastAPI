@@ -1,10 +1,11 @@
 import logging
 import functools
 import jsonschema
-from jsonschema import ValidationError
+from jsonschema import ValidationError, SchemaError
 from fastapi import status
 from fastapi.responses import JSONResponse
 from src.configurations.config import prompts
+from src.helpers.handle_errors import error_parser
 from src.helpers.helpers import formated_error
 
 logger = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ def validate_request_data(request_data, schema):
         jsonschema.validate(instance=request_data, schema=schema)
 
     except ValidationError as error:
-        return error.message.split('\n')[0]
+        return error_parser(error)
 
 
 def validate_body(schema):

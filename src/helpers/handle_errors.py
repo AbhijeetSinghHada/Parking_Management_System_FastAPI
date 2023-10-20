@@ -1,13 +1,11 @@
 import functools
 import traceback
-import logging
-
 from fastapi.responses import JSONResponse
-from src.helpers.logger import log_debug
+from src.helpers.logger import log_debug, get_logger
 from src.helpers.helpers import formated_error
 from src.configurations.config import prompts, error_map
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 
@@ -49,3 +47,10 @@ def get_error_response(error):
         )
     )
 
+
+def error_parser(error):
+    try:
+        message = error.schema.get("message").get(error.validator)
+        return message
+    except Exception as e:
+        return error.message.split("\n")[0]

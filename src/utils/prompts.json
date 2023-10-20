@@ -6,6 +6,7 @@
     "SPACE_OCCUPIED": "Cannot reduce capacity. Space is occupied.",
     "VEHICLE_NOT_PARKED": "Vehicle do not have any assigned slot.",
     "VEHICLE_ALREADY_PARKED": "Vehicle Already Parked.",
+    "VEHICLE_NOT_EXISTS": "Vehicle do not Exists. Please Add Vehicle First.",
     "INVALID_SLOT_TYPE": "No such slot type exists.",
     "FETCH_CUSTOMER_DATA_ERROR": "Cannot Fetch Customer Data.",
     "INSERT_CUSTOMER_ERROR": "Cannot Insert Customer Data.",

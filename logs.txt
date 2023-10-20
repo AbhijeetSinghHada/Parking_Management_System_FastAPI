@@ -1,0 +1,489 @@
+2023-10-16 09:28:53 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 633, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 62, in insert_into_bill_table
+    db.insert_item(sql_queries.get("insert_into_billing_table"),
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\models\database.py", line 51, in insert_item
+    self.cursor.execute(query, *args)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 641, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.IntegrityError: 1048 (23000): Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 40, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 27, in park_vehicle_on_slot
+    billing.insert_into_bill_table(request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 65, in insert_into_bill_table
+    raise ResourceWarning(prompts.get(
+ResourceWarning: Cannot Insert Billing Data.
+
+2023-10-16 09:29:19 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 633, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 62, in insert_into_bill_table
+    db.insert_item(sql_queries.get("insert_into_billing_table"),
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\models\database.py", line 51, in insert_item
+    self.cursor.execute(query, *args)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 641, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.IntegrityError: 1048 (23000): Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 40, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 27, in park_vehicle_on_slot
+    billing.insert_into_bill_table(request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 65, in insert_into_bill_table
+    raise ResourceWarning(prompts.get(
+ResourceWarning: Cannot Insert Billing Data.
+
+2023-10-16 09:31:16 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 633, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 62, in insert_into_bill_table
+    db.insert_item(sql_queries.get("insert_into_billing_table"),
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\models\database.py", line 51, in insert_item
+    self.cursor.execute(query, *args)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 641, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.IntegrityError: 1048 (23000): Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 40, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 28, in park_vehicle_on_slot
+    billing.insert_into_bill_table(request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 65, in insert_into_bill_table
+    raise ResourceWarning(prompts.get(
+ResourceWarning: Cannot Insert Billing Data.
+
+2023-10-16 09:31:18 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 633, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 62, in insert_into_bill_table
+    db.insert_item(sql_queries.get("insert_into_billing_table"),
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\models\database.py", line 51, in insert_item
+    self.cursor.execute(query, *args)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\mysql\connector\connection_cext.py", line 641, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.IntegrityError: 1048 (23000): Column 'vehicle_id' cannot be null
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 40, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\routers\slot.py", line 28, in park_vehicle_on_slot
+    billing.insert_into_bill_table(request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\controllers\billing.py", line 65, in insert_into_bill_table
+    raise ResourceWarning(prompts.get(
+ResourceWarning: Cannot Insert Billing Data.
+
+2023-10-16 09:49:37 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 29, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1303, in validate
+    cls.check_schema(schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 302, in check_schema
+    raise exceptions.SchemaError.create_from(error)
+jsonschema.exceptions.SchemaError: 'Value is not longer than or equal to 10 characters' is not of type 'integer'
+
+Failed validating 'type' in metaschema['allOf'][1]['properties']['properties']['additionalProperties']['$dynamicRef']['allOf'][3]['properties']['minLength']:
+    {'minimum': 0, 'type': 'integer'}
+
+On schema['properties']['errors']['minLength']:
+    'Value is not longer than or equal to 10 characters'
+
+2023-10-16 09:51:35 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 29, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1303, in validate
+    cls.check_schema(schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 302, in check_schema
+    raise exceptions.SchemaError.create_from(error)
+jsonschema.exceptions.SchemaError: 'Value is not longer than or equal to 10 characters' is not of type 'integer'
+
+Failed validating 'type' in metaschema['allOf'][1]['properties']['properties']['additionalProperties']['$dynamicRef']['allOf'][3]['properties']['minLength']:
+    {'minimum': 0, 'type': 'integer'}
+
+On schema['properties']['errors']['minLength']:
+    'Value is not longer than or equal to 10 characters'
+
+2023-10-16 10:01:40 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'RJ1BW7711' does not match '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$'
+
+Failed validating 'pattern' in schema['properties']['vehicle_number']:
+    {'message': {'pattern': 'vehicle_number should be in the format of '
+                            'XX11XX1111',
+                 'required': 'vehicle_number is a required property'},
+     'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+     'type': 'string'}
+
+On instance['vehicle_number']:
+    'RJ1BW7711'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 30, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    print(dict(error))
+          ^^^^^^^^^^^
+TypeError: 'ValidationError' object is not iterable
+
+2023-10-16 10:04:11 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'vehicle_number' is a required property
+
+Failed validating 'required' in schema:
+    {'properties': {'slot_number': {'minimum': 1, 'type': 'integer'},
+                    'vehicle_number': {'message': {'pattern': 'vehicle_number '
+                                                              'should be '
+                                                              'in the '
+                                                              'format of '
+                                                              'XX11XX1111',
+                                                   'required': 'vehicle_number '
+                                                               'is a '
+                                                               'required '
+                                                               'property'},
+                                       'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+                                       'type': 'string'},
+                    'vehicle_type': {'type': 'string'}},
+     'required': ['slot_number', 'vehicle_type', 'vehicle_number'],
+     'type': 'object'}
+
+On instance:
+    {'slot_number': 1, 'vehicle_type': 'LMV'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 29, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    return error.schema.get("message").get(error.validator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+2023-10-16 10:05:48 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'vehicle_number' is a required property
+
+Failed validating 'required' in schema:
+    {'properties': {'slot_number': {'minimum': 1, 'type': 'integer'},
+                    'vehicle_number': {'message': {'pattern': 'vehicle_number '
+                                                              'should be '
+                                                              'in the '
+                                                              'format of '
+                                                              'XX11XX1111',
+                                                   'required': 'vehicle_number '
+                                                               'is a '
+                                                               'required '
+                                                               'property'},
+                                       'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+                                       'type': 'string'},
+                    'vehicle_type': {'type': 'string'}},
+     'required': ['slot_number', 'vehicle_type', 'vehicle_number'],
+     'type': 'object'}
+
+On instance:
+    {'slot_number': 1, 'vehicle_type': 'LMV'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 32, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    message = error.schema.get("message").get(error.validator)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+2023-10-16 10:06:04 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'vehicle_number' is a required property
+
+Failed validating 'required' in schema:
+    {'properties': {'slot_number': {'minimum': 1, 'type': 'integer'},
+                    'vehicle_number': {'message': {'pattern': 'vehicle_number '
+                                                              'should be '
+                                                              'in the '
+                                                              'format of '
+                                                              'XX11XX1111',
+                                                   'required': 'vehicle_number '
+                                                               'is a '
+                                                               'required '
+                                                               'property'},
+                                       'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+                                       'type': 'string'},
+                    'vehicle_type': {'type': 'string'}},
+     'required': ['slot_number', 'vehicle_type', 'vehicle_number'],
+     'type': 'object'}
+
+On instance:
+    {'slot_number': 1, 'vehicle_type': 'LMV'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 32, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    message = error.schema.get("message").get(error.validator)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+2023-10-16 10:06:06 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'vehicle_number' is a required property
+
+Failed validating 'required' in schema:
+    {'properties': {'slot_number': {'minimum': 1, 'type': 'integer'},
+                    'vehicle_number': {'message': {'pattern': 'vehicle_number '
+                                                              'should be '
+                                                              'in the '
+                                                              'format of '
+                                                              'XX11XX1111',
+                                                   'required': 'vehicle_number '
+                                                               'is a '
+                                                               'required '
+                                                               'property'},
+                                       'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+                                       'type': 'string'},
+                    'vehicle_type': {'type': 'string'}},
+     'required': ['slot_number', 'vehicle_type', 'vehicle_number'],
+     'type': 'object'}
+
+On instance:
+    {'slot_number': 1, 'vehicle_type': 'LMV'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 32, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    message = error.schema.get("message").get(error.validator)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+2023-10-16 10:06:22 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 17, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1307, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'vehicle_number' is a required property
+
+Failed validating 'required' in schema:
+    {'properties': {'slot_number': {'minimum': 1, 'type': 'integer'},
+                    'vehicle_number': {'message': {'pattern': 'vehicle_number '
+                                                              'should be '
+                                                              'in the '
+                                                              'format of '
+                                                              'XX11XX1111',
+                                                   'required': 'vehicle_number '
+                                                               'is a '
+                                                               'required '
+                                                               'property'},
+                                       'pattern': '^[A-Z]{2}\\d{2}[A-Z]{2}\\d{4}$',
+                                       'type': 'string'},
+                    'vehicle_type': {'type': 'string'}},
+     'required': ['slot_number', 'vehicle_type', 'vehicle_number'],
+     'type': 'object'}
+
+On instance:
+    {'slot_number': 1, 'vehicle_type': 'LMV'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 33, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 20, in validate_request_data
+    message = error.schema.get("message").get(error.validator)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+2023-10-16 10:15:31 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 30, in wrapper
+    validation_response = validate_request_data(
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\V3_FAST_Parking_Management_System\src\helpers\validations.py", line 18, in validate_request_data
+    jsonschema.validate(instance=request_data, schema=schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 1303, in validate
+    cls.check_schema(schema)
+  File "C:\Users\ahada\.virtualenvs\V3_FAST_Parking_Management_System-xyCerd5N\Lib\site-packages\jsonschema\validators.py", line 302, in check_schema
+    raise exceptions.SchemaError.create_from(error)
+jsonschema.exceptions.SchemaError: 'vehicle_number is a required property' is not of type 'array'
+
+Failed validating 'type' in metaschema['allOf'][1]['properties']['properties']['additionalProperties']['$dynamicRef']['allOf'][3]['properties']['required']:
+    {'default': [],
+     'items': {'type': 'string'},
+     'type': 'array',
+     'uniqueItems': True}
+
+On schema['properties']['message']['required']:
+    'vehicle_number is a required property'
+

@@ -9,11 +9,12 @@ slot_schema = {
             "type": "string",
             "pattern": r"^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$",
             "message": {
-            "required": "Date of Birth is Required Property",
-            "pattern": "Correct format of Date Of Birth is dd-mmm-yyyy"
+                "required": "vehicle_number is a required property",
+                "pattern": "vehicle_number should be in the format of XX11XX1111"
         }
-        }
+        },
     },
+    
     "required": ["slot_number", "vehicle_type", "vehicle_number"]
 }
 

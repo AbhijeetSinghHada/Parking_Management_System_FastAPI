@@ -7,6 +7,7 @@ from src.helpers.validations import validate_body
 from src.controllers.slot import Slot
 from src.helpers.helpers import return_date_and_time
 from src.helpers.schemas.slot_schemas import ban_slot_schema, slot_schema
+from src.configurations.config import prompts
 
 router = APIRouter()
 
@@ -20,8 +21,10 @@ def park_vehicle_on_slot(request: Request, request_data=Body()):
     slot = Slot()
     vehicle = Vehicle()
     billing = Billing()
-    vehicle.check_if_vehicle_exists(request_data.get(
-        "vehicle_type"))
+
+    if not vehicle.check_if_vehicle_exists(request_data.get(
+        "vehicle_number")):
+        raise ValueError(prompts.get("VEHICLE_NOT_EXISTS"))
 
     date, time = return_date_and_time()
     billing.insert_into_bill_table(request_data.get(
