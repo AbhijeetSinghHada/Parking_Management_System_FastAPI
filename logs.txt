@@ -487,3 +487,15 @@ Failed validating 'type' in metaschema['allOf'][1]['properties']['properties']['
 On schema['properties']['message']['required']:
     'vehicle_number is a required property'
 
+2023-10-26 20:53:50 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 18, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 14, in wrapper
+    token = validate_access_token(request=request)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\jwt_helpers.py", line 20, in validate_access_token
+    token = request.headers.get("Authorization").split(" ")[1]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'split'
+

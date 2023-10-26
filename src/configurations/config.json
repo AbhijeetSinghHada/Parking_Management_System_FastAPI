@@ -6,8 +6,8 @@
         "database": "parkingmanagement",
         "auth_plugin": "mysql_native_password"
     },
-    "PROMPTS_PATH": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\prompts.json",
-    "SQL_QUERIES_PATH": "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\V3_FAST_Parking_Management_System\\src\\utils\\sql_queries.json",
+    "PROMPTS_PATH": "C:\\PERSONAL\\Parking_Management_System_FastAPI\\src\\utils\\prompts.json",
+    "SQL_QUERIES_PATH": "C:\\PERSONAL\\Parking_Management_System_FastAPI\\src\\utils\\sql_queries.json",
     "ERROR_FORMAT": {
         "error": {
             "code": 0,

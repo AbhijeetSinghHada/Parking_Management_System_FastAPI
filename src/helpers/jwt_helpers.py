@@ -17,10 +17,11 @@ ALGORITHM = os.getenv("ALGORITHM")
 def validate_access_token(request: Request):
     """Validate the access token"""
 
-    token = request.headers.get("Authorization").split(" ")[1]
+    token = request.headers.get("Authorization")
     if not token:
         raise UnauthorizedError("Token Not Found")
     try:
+        token = token.split(" ")[1]
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     except jwt.ExpiredSignatureError as exc:
         raise UnauthorizedError(prompts.get(
