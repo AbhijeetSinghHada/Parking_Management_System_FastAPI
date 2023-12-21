@@ -27,6 +27,7 @@ def validate_body(schema):
         @functools.wraps(function)
         def wrapper(*args, **kwargs):
             request_data = kwargs.get("request_data")
+            print(request_data)
             validation_response = validate_request_data(
                 request_data, schema)
             if validation_response:

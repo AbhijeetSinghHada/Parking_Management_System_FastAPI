@@ -12,7 +12,8 @@ class Slot(ParkingSpace):
             slot_number (int): The slot number to be assigned
             vehicle_type (str): The vehicle type of the vehicle to be parked
             vehicle_number (str): The vehicle number of the vehicle to be parked"""
-
+        
+        self.is_slot_type_for_vehicle_correct(vehicle_number, vehicle_type)
         self.is_vehicle_type_existing(vehicle_type)
         self.is_slot_number_existing(slot_number, vehicle_type)
         self.__is_slot_available(slot_number, vehicle_type)
@@ -72,19 +73,24 @@ class Slot(ParkingSpace):
             vehicle_type (str): The slot type of the slots to be fetched
         Returns: The status of the slots in the form of a list of dictionary"""
 
-        slot_data = self.__get_slots_data()
         slot_type_capacity = self.get_parking_capacity(vehicle_type)
+        slot_data = self.__get_slots_data()
         if not slot_type_capacity:
             raise ValueError(prompts.get("INVALID_SLOT_TYPE"))
         occupied_slot_numbers = [x[0]
-                                 for x in slot_data if x[2] == vehicle_type]
+                                 for x in slot_data if x[2] == vehicle_type and x[1]!=-1]
+        ban_slot_numbers = [x[0]
+                                 for x in slot_data if x[2] == vehicle_type and x[1]==-1]        
         slot_table = []
 
         for i in range(1, int(slot_type_capacity) + 1):
             if i in occupied_slot_numbers:
                 slot_table.append({"slot_id": i, "status": "Occupied"})
                 continue
-            slot_table.append({"slot_id": i, "status": "Not Occupied"})
+            if i in ban_slot_numbers:
+                slot_table.append({"slot_id": i, "status": "Banned"})
+                continue
+            slot_table.append({"slot_id": i, "status": "Not_Occupied"})
         return slot_table
 
     def __get_slots_data(self):
@@ -150,3 +156,15 @@ class Slot(ParkingSpace):
             if i[2] == parking_category and i[0] > new_capacity:
                 return True
         return False
+
+    def is_slot_type_for_vehicle_correct(self, vehicle_number, vehicle_type):
+        """Check if the slot type for the vehicle is correct
+        Args:
+            vehicle_number (str): The vehicle number of the vehicle to be checked
+            vehicle_type (str): The vehicle type of the vehicle to be checked
+        Returns: True if the slot type for the vehicle is correct"""
+
+        vehicle_details = db.get_multiple_items(sql_queries.get("slot_type_for_vehicle"), (vehicle_number, vehicle_type,))
+        if not vehicle_details:
+            raise ValueError(prompts.get("INVALID_VEHICLE_NUMBER"))
+        return True

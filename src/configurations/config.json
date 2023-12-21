@@ -26,8 +26,8 @@
         ],
         "Operator": [
             "get_slot_table",
-            "park_vehicle_on_slot",
-            "unpark_vehicle_from_slot",
+            "occupy_slot",
+            "unassign_slot",
             "add_vehicle",
             "get_parking_space"
         ]

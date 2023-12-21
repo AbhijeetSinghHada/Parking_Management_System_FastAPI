@@ -8,6 +8,7 @@
     "VEHICLE_ALREADY_PARKED": "Vehicle Already Parked.",
     "VEHICLE_NOT_EXISTS": "Vehicle do not Exists. Please Add Vehicle First.",
     "INVALID_SLOT_TYPE": "No such slot type exists.",
+    "INVALID_VEHICLE_NUMBER": "Vehicle Number not found in this Parking Category.",
     "FETCH_CUSTOMER_DATA_ERROR": "Cannot Fetch Customer Data.",
     "INSERT_CUSTOMER_ERROR": "Cannot Insert Customer Data.",
     "GET_BILLING_DATA_ERROR": "Cannot Fetch Billing Data.",
@@ -29,6 +30,7 @@
         "FORBIDDEN_ERROR": "Forbidden Access",
         "FORBIDDEN_STATUS": "You are not allowed to perform this operation.",
         "EXPIRED_TOKEN_ERROR": "Token Expired",
-        "INVALID_TOKEN_ERROR": "Invalid Token"
+        "INVALID_TOKEN_ERROR": "Invalid Token",
+        "AUTHENTICATION_ERROR": "Authentication Failed"
     }
 }

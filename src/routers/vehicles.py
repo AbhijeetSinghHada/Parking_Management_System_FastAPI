@@ -32,6 +32,11 @@ def add_vehicle(request: Request, request_data=Body()):
 
     if customer_data:
         customer_id = customer_data[0][0]
+        request_data['customer'] = {
+            "name" : customer_data[0][1],
+            "email_address" : customer_data[0][2],
+            "phone_number" : customer_data[0][3]
+        }
         message = prompts.get("CUSTOMER_EXISTS_VEHICLE_ADDED")
     else:
         customer_id = customer.insert_customer_details(

@@ -23,7 +23,7 @@ def grant_access(fun):
         return JSONResponse(
                 status_code=status.HTTP_403_FORBIDDEN,
                 content=formated_error(
-                    error_code=500,
+                    error_code=403,
                     error_message=prompts.get("errors").get("FORBIDDEN_ERROR"),
                     status=prompts.get("errors").get("FORBIDDEN_STATUS"))
             )

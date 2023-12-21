@@ -1,5 +1,5 @@
 import json
-from src.helpers.errors import UnauthorizedError, ConflictError
+from src.helpers.errors import AuthenticationError, UnauthorizedError, ConflictError
 
 def load_configuration():
     """Load the configuration file and return the parameters"""
@@ -35,5 +35,6 @@ error_map = {
         UnauthorizedError: (401, "UNAUTHORIZED_ERROR"),
         ConflictError: (409, "CONFLICT_ERROR"),
         ValueError: (400, "BAD_REQUEST_ERROR"),
+        AuthenticationError: (401, "AUTHENTICATION_ERROR"),
         Exception : (500, "INTERNAL_SERVER_ERROR")
     }

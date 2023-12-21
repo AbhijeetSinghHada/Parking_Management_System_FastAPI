@@ -12,11 +12,11 @@ from src.configurations.config import prompts
 router = APIRouter()
 
 
-@router.post("/slots")
+@router.post("/slots/assign")
 @handle_errors
-@grant_access
 @validate_body(slot_schema)
-def park_vehicle_on_slot(request: Request, request_data=Body()):
+@grant_access
+def occupy_slot(request: Request, request_data=Body()):
     """Park a vehicle"""
     slot = Slot()
     vehicle = Vehicle()
@@ -45,10 +45,10 @@ def get_slot_table(request: Request, slot_type):
     return slot_table
 
 
-@router.delete("/slots")
+@router.delete("/slots/unassign")
 @handle_errors
 @grant_access
-def unpark_vehicle_from_slot(request: Request, vehicle_number):
+def unassign_slot(request: Request, vehicle_number):
     """Unpark a vehicle from a slot"""
 
     slot = Slot()
@@ -71,11 +71,11 @@ def ban_slot(request: Request, request_data=Body()):
 
     slot = Slot()
     slot.ban_slot(request_data.get("slot_number"),
-                  request_data.get("vehicle_type"))
+                  request_data.get("slot_type"))
     return request_data
 
 
-@router.patch("/slots/ban")
+@router.post("/slots/unban")
 @handle_errors
 @grant_access
 @validate_body(ban_slot_schema)
@@ -84,7 +84,7 @@ def unban_slot(request: Request, request_data=Body()):
 
     slot = Slot()
     slot.unban_slot(request_data.get("slot_number"),
-                    request_data.get("vehicle_type"))
+                    request_data.get("slot_type"))
     
     return request_data
 

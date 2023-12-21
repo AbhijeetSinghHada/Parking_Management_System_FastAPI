@@ -20,7 +20,7 @@ def login(request_data=Body()):
         username=request_data.get("username"), password=request_data.get("password"))
     instance.authenticate()
     request_data = instance.fetch_user_roles()
-    access_token = create_access_token(request_data, timedelta(minutes=60))
+    access_token = create_access_token(request_data, timedelta(seconds=3600))
     response_data = {
         "access_token": access_token,
         "token_type": "bearer"

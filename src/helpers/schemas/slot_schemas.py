@@ -24,7 +24,7 @@ ban_slot_schema = {
     "properties": {
         "slot_number": {"type": "integer",
                         "minimum": 1},
-        "vehicle_type": {"type": "string"}
+        "slot_type": {"type": "string"}
     },
-    "required": ["slot_number", "vehicle_type"]
+    "required": ["slot_number", "slot_type"]
 }

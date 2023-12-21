@@ -25,7 +25,7 @@ def get_parking_space(request: Request):
     return parking_space_data
 
 
-@router.put("/parkingspace")
+@router.put("/parkingspace/update")
 @handle_errors
 @grant_access
 @validate_body(parking_space_schema)
@@ -47,7 +47,7 @@ def update_parking_space(request: Request, request_data=Body()):
     return request_data
 
 
-@router.post("/parkingspace")
+@router.post("/parkingspace/add")
 @handle_errors
 @grant_access
 @validate_body(parking_space_schema_all_required)

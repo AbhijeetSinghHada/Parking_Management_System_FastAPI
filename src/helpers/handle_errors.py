@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from src.helpers.logger import log_debug, get_logger
 from src.helpers.helpers import formated_error
 from src.configurations.config import prompts, error_map
+from src.models.database import Database
 
 logger = get_logger(__name__)
 
@@ -30,12 +31,12 @@ def get_error_response(error):
     if type(error) in error_map:
         status_code, error_key = error_map[type(error)]
     else:
-        log_debug(logger,
+        status_code, error_key = error_map[Exception]
+    log_debug(logger,
                 "Error Occurred: {}".format(
                     traceback.format_exc()
                 )
             )
-        status_code, error_key = error_map[Exception]
 
 
     return JSONResponse(
@@ -54,3 +55,19 @@ def error_parser(error):
         return message
     except Exception as e:
         return error.message.split("\n")[0]
+    
+
+def handle_db_errors(function):
+    """Decorator to handle database errors"""
+    
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        try:
+            return_value = function(*args, **kwargs)
+            return return_value
+
+        except Exception as error:
+            Database.reset()
+            raise error
+
+    return wrapper

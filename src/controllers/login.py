@@ -1,5 +1,6 @@
 import logging
 import hashlib
+from src.helpers.errors import AuthenticationError
 from src.helpers.helpers import convert_user_details_to_dict
 from src.models.database import db
 from src.configurations.config import prompts, sql_queries
@@ -32,7 +33,7 @@ class Login:
             self.user_id = data[0][0]
             return self.user_id
 
-        raise ValueError(prompts.get("INVALID_DETAILS"))
+        raise AuthenticationError(prompts.get("INVALID_DETAILS"))
 
     @staticmethod
     def get_hashed_password(password):
