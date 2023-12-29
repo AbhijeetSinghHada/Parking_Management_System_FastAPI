@@ -80,7 +80,7 @@ class TestSlot(unittest.TestCase):
         mock_db.delete_item.assert_called_once()
         
 
-    @patch.object(Slot, '_Slot__get_slots_data', new_callable=MagicMock)
+    @patch('src.controllers.slot.db', new_callable=MagicMock)
     def test_get_all_slot_status(self, mock_get_slots_data):
         mock_get_slots_data.return_value = self.slot_data
         self.slot.get_parking_capacity = MagicMock(return_value=8)

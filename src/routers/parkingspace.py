@@ -34,6 +34,7 @@ def update_parking_space(request: Request, request_data=Body()):
 
     parking_space = ParkingSpace()
     slot = Slot()
+    slot.is_vehicle_type_existing(request_data.get("slot_type"))
     if request_data.get("total_capacity"):
         if slot.is_space_occupied(request_data.get("slot_type"),
                                   request_data.get("total_capacity")):

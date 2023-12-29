@@ -2596,3 +2596,263 @@ src.helpers.errors.ConflictError: Cannot reduce capacity. Space is occupied.
     raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
 ValueError: Vehicle do not have any assigned slot.
 
+2023-12-21 17:09:31 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 73, in ban_slot
+    slot.ban_slot(request_data.get("slot_number"),
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 45, in ban_slot
+    self.__is_slot_available(slot_number, slot_type)
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 125, in __is_slot_available
+    raise ConflictError(prompts.get("SLOT_OCCUPIED"))
+src.helpers.errors.ConflictError: Slot Already Occupied! Choose One Which is not.
+
+2023-12-21 17:09:32 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 73, in ban_slot
+    slot.ban_slot(request_data.get("slot_number"),
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 45, in ban_slot
+    self.__is_slot_available(slot_number, slot_type)
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 125, in __is_slot_available
+    raise ConflictError(prompts.get("SLOT_OCCUPIED"))
+src.helpers.errors.ConflictError: Slot Already Occupied! Choose One Which is not.
+
+2023-12-21 19:58:00 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
+2023-12-21 19:58:07 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
+2023-12-21 19:59:54 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\jwt_helpers.py", line 25, in validate_access_token
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 14, in wrapper
+    token = validate_access_token(request=request)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\jwt_helpers.py", line 27, in validate_access_token
+    raise UnauthorizedError(prompts.get(
+src.helpers.errors.UnauthorizedError: Token Expired
+
+2023-12-21 20:02:44 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\parkingspace.py", line 40, in update_parking_space
+    raise ConflictError(prompts.get("SPACE_OCCUPIED"))
+src.helpers.errors.ConflictError: Cannot reduce capacity. Space is occupied.
+
+2023-12-22 09:51:46 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 32, in occupy_slot
+    slot.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 20, in assign_slot
+    self.__is_already_parked(vehicle_number)
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 113, in __is_already_parked
+    raise ConflictError(prompts.get("VEHICLE_ALREADY_PARKED"))
+src.helpers.errors.ConflictError: Vehicle Already Parked.
+
+2023-12-22 10:14:49 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 32, in occupy_slot
+    slot.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 20, in assign_slot
+    self.__is_already_parked(vehicle_number)
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 113, in __is_already_parked
+    raise ConflictError(prompts.get("VEHICLE_ALREADY_PARKED"))
+src.helpers.errors.ConflictError: Vehicle Already Parked.
+
+2023-12-28 14:27:02 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\jwt_helpers.py", line 25, in validate_access_token
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\Users\ahada\.virtualenvs\Parking_Management_System_FastAPI-yC4wlCPa\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 14, in wrapper
+    token = validate_access_token(request=request)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\jwt_helpers.py", line 27, in validate_access_token
+    raise UnauthorizedError(prompts.get(
+src.helpers.errors.UnauthorizedError: Token Expired
+
+2023-12-29 11:03:23 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\validations.py", line 42, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\vehicles.py", line 51, in add_vehicle
+    vehicle.add_vehicle(
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\vehicle.py", line 19, in add_vehicle
+    raise ValueError(prompts.get("VEHICLE_ALREADY_EXISTS"))
+ValueError: Vehicle Already Exists.
+
+2023-12-29 11:03:33 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
+2023-12-29 11:03:38 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
+2023-12-29 11:03:42 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
+2023-12-29 11:03:43 DEBUG log_debug(23) Error Occurred: Traceback (most recent call last):
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\handle_errors.py", line 19, in wrapper
+    return_value = function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\helpers\access_decorator.py", line 21, in wrapper
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\routers\slot.py", line 56, in unassign_slot
+    slot_details = slot.unassign_slot(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 31, in unassign_slot
+    slot_details = self.__get_slot_details_by_vehicle(vehicle_number)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PERSONAL\Parking_Management_System_FastAPI\src\controllers\slot.py", line 145, in __get_slot_details_by_vehicle
+    raise ValueError(prompts.get("VEHICLE_NOT_PARKED"))
+ValueError: Vehicle do not have any assigned slot.
+
